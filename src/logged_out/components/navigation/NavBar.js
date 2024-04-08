@@ -21,7 +21,8 @@ const styles = theme => ({
   },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.h6.fontWeight
+    fontWeight: theme.typography.h6.fontWeight,
+    marginRight: theme.spacing(7),
   },
   brandText: {
     fontFamily: "'Baloo Bhaijaan', cursive",
@@ -45,12 +46,12 @@ function NavBar(props) {
   const menuItems = [
     {
       link: "/",
-      name: "Home",
+      name: "For Candidates",
       icon: <HomeIcon className="text-white" />
     },
     {
-      link: "/blog",
-      name: "Blog",
+      link: "/HR",
+      name: "For HR",
       icon: <BookIcon className="text-white" />
     },
     {
@@ -75,7 +76,7 @@ function NavBar(props) {
               display="inline"
               color="primary"
             >
-              Wa
+              Skill
             </Typography>
             <Typography
               variant="h4"
@@ -83,7 +84,7 @@ function NavBar(props) {
               display="inline"
               color="secondary"
             >
-              Ver
+              Q
             </Typography>
           </div>
           <div>

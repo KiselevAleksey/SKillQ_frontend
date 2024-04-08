@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import HeadSection from "./HeadSection";
-import FeatureSection from "./FeatureSection";
-import PricingSection from "./PricingSection";
+import FeaturesSection from "./FeaturesSection";
+import TemplateWithPicture from "./TemplateWithPicture";
 
-function Home(props) {
+function Candidates(props) {
   const { selectHome } = props;
   useEffect(() => {
     selectHome();
@@ -12,14 +12,14 @@ function Home(props) {
   return (
     <Fragment>
       <HeadSection />
-      <FeatureSection />
-      <PricingSection />
+      <FeaturesSection />
+      <TemplateWithPicture />
     </Fragment>
   );
 }
 
-Home.propTypes = {
+Candidates.propTypes = {
   selectHome: PropTypes.func.isRequired
 };
 
-export default Home;
+export default Candidates;

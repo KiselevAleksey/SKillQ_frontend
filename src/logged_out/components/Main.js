@@ -32,14 +32,14 @@ function Main(props) {
   const selectHome = useCallback(() => {
     smoothScrollTop();
     document.title =
-      "WaVer - Free template for building a SaaS or admin application";
-    setSelectedTab("Home");
+      "SkillQ - AI-based Career Pathing & Skill Assessment";
+    setSelectedTab("For Candidates");
   }, [setSelectedTab]);
 
   const selectBlog = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Blog";
-    setSelectedTab("Blog");
+    document.title = "SkillQ - HR";
+    setSelectedTab("For HR");
   }, [setSelectedTab]);
 
   const openLoginDialog = useCallback(() => {
@@ -82,7 +82,7 @@ function Main(props) {
       title = title.replace(/\s{2,}/g, " ");
       /* Replace space with a '-' symbol */
       title = title.replace(/\s/g, "-");
-      blogPost.url = `/blog/post/${title}`;
+      blogPost.url = `/HR/post/${title}`;
       blogPost.params = `?id=${blogPost.id}`;
       return blogPost;
     });

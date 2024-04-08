@@ -1,11 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from 'react';
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Grid, Typography, Card, Button, Hidden, Box } from "@mui/material";
+import { Grid, Typography, Card, Button, Checkbox, Box } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
 import WaveBorder from "../../../shared/components/WaveBorder";
-import ZoomImage from "../../../shared/components/ZoomImage";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import VideoModal from './VideoModal';
+import ReactPlayer from 'react-player'; 
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Link from '@mui/material/Link';
+
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -88,11 +94,88 @@ const styles = (theme) => ({
   waveBorder: {
     paddingTop: theme.spacing(4),
   },
+  playIcon: {
+    height: '72px',
+    width: '72px',
+    [theme.breakpoints.up("sm")]: {
+      height: '96px',
+      width: '96px',
+    },
+    color: theme.palette.common.white,
+    '&:hover': {
+      opacity: 0.8,
+    },
+  },  
+  dialogPaper: {
+    minWidth: '60vw',
+    minWidth: '80vw', // Adjust the minimum width of the dialog
+  },
+  bulletPoints: {
+    paddingLeft: theme.spacing(2),
+    '& li': {
+      marginBottom: theme.spacing(1),
+    },
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    padding: theme.spacing(4), // Adjust the padding as needed
+  },
+  agreement: {
+    marginTop: theme.spacing(2),
+  },
+  dialogWrapper: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+  },
+  buttonCenter: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: theme.spacing(4),
+  },
+  checkboxLabel: {
+    marginTop: theme.spacing(1),
+  },
 });
 
 function HeadSection(props) {
   const { classes, theme } = props;
   const isWidthUpLg = useMediaQuery(theme.breakpoints.up("lg"));
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [playVideo, setPlayVideo] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+  
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };  
+
+  const handleDataProcessingAgreement = (event) => {
+    event.preventDefault();
+    // Placeholder for data processing agreement logic
+    console.log("Data Processing Agreement clicked");
+  };
+
+  const handleRecordingAgreement = (event) => {
+    event.preventDefault();
+    // Placeholder for recording agreement logic
+    console.log("Recording Agreement clicked");
+  };
+
+  const startAssessment = () => {
+    // Placeholder for starting the assessment
+    console.log("Assessment started");
+    // Close the dialog or navigate to the assessment
+    handleCloseDialog(); // Assuming you have a function to close the dialog
+  };
 
   return (
     <Fragment>
@@ -114,9 +197,8 @@ function HeadSection(props) {
                       height="100%"
                     >
                       <Box mb={4}>
-                        <Typography variant={isWidthUpLg ? "h3" : "h4"}>
-                          Free Template for building a SaaS app using
-                          Material-UI
+                        <Typography variant={isWidthUpLg ? "h3" : "h4"} component="div">
+                          <strong>Stand Out in Job Search</strong>
                         </Typography>
                       </Box>
                       <div>
@@ -124,9 +206,13 @@ function HeadSection(props) {
                           <Typography
                             variant={isWidthUpLg ? "h6" : "body1"}
                             color="textSecondary"
+                            component="div"
                           >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt
+                            <ul>
+                              <li>Precise AI skill evaluation</li>
+                              <li>Verified expertise visibility</li>
+                              <li>Unique employee offers</li>
+                            </ul>
                           </Typography>
                         </Box>
                         <Button
@@ -135,22 +221,27 @@ function HeadSection(props) {
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
-                          href="https://github.com/dunky11/react-saas-template"
+                          onClick={handleOpenDialog}
                         >
-                          Download from GitHub
+                          Explore Top Job Opportunities
                         </Button>
                       </div>
                     </Box>
                   </Grid>
-                  <Hidden mdDown>
-                    <Grid item md={6}>
-                      <ZoomImage
-                        src={`${process.env.PUBLIC_URL}/images/logged_out/headerImage.jpg`}
-                        className={classes.image}
-                        alt="header example"
-                      />
-                    </Grid>
-                  </Hidden>
+
+                <Grid item xs={12} md={6}>
+                  <Box position="relative" display="inline-block">
+                    <ReactPlayer
+                      url='Welcome to the Team.mp4' // Replace with the actual path to your video file
+                      playing={playVideo}
+                      controls={true}
+                      width='100%'
+                      height='100%'
+                      onClick={() => setPlayVideo(!playVideo)} // Control play state on click
+                    />
+                  </Box>
+                </Grid>
+     
                 </Box>
               </div>
             </Card>
@@ -163,6 +254,11 @@ function HeadSection(props) {
         className={classes.waveBorder}
         animationNegativeDelay={2}
       />
+      <VideoModal
+      open={videoModalOpen}
+      handleClose={() => setVideoModalOpen(false)}
+      videoSrc="Welcome to the Team.mp4" // The source link of your video
+    />
     </Fragment>
   );
 }

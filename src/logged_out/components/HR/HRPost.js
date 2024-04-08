@@ -4,7 +4,7 @@ import classNames from "classnames";
 import format from "date-fns/format";
 import { Grid, Typography, Card, Box } from "@mui/material";
 import withStyles from '@mui/styles/withStyles';
-import BlogCard from "./BlogCard";
+import BlogCard from "./HRCard";
 import ShareButton from "../../../shared/components/ShareButton";
 import ZoomImage from "../../../shared/components/ZoomImage";
 import smoothScrollTop from "../../../shared/functions/smoothScrollTop";
@@ -36,7 +36,7 @@ function BlogPost(props) {
   const { classes, date, title, src, content, otherArticles } = props;
 
   useEffect(() => {
-    document.title = `WaVer - ${title}`;
+    document.title = `SkillQ - ${title}`;
     smoothScrollTop();
   }, [title]);
 
