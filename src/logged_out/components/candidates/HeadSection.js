@@ -7,10 +7,6 @@ import WaveBorder from "../../../shared/components/WaveBorder";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import VideoModal from './VideoModal';
 import ReactPlayer from 'react-player'; 
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Link from '@mui/material/Link';
 
 
 const styles = (theme) => ({
@@ -181,71 +177,71 @@ function HeadSection(props) {
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
         <div className={classNames("container-fluid", classes.container)}>
-          <Box display="flex" justifyContent="center" className="row">
-            <Card
-              className={classes.card}
-              data-aos-delay="200"
-              data-aos="zoom-in"
-            >
-              <div className={classNames(classes.containerFix, "container")}>
-                <Box justifyContent="space-between" className="row">
-                  <Grid item xs={12} md={5}>
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      justifyContent="space-between"
-                      height="100%"
-                    >
-                      <Box mb={4}>
-                        <Typography variant={isWidthUpLg ? "h3" : "h4"} component="div">
-                          <strong>Stand Out in Job Search</strong>
-                        </Typography>
-                      </Box>
-                      <div>
-                        <Box mb={2}>
-                          <Typography
-                            variant={isWidthUpLg ? "h6" : "body1"}
-                            color="textSecondary"
-                            component="div"
-                          >
-                            <ul>
-                              <li>Precise AI skill evaluation</li>
-                              <li>Verified expertise visibility</li>
-                              <li>Unique employee offers</li>
-                            </ul>
-                          </Typography>
-                        </Box>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          fullWidth
-                          className={classes.extraLargeButton}
-                          classes={{ label: classes.extraLargeButtonLabel }}
-                          onClick={handleOpenDialog}
-                        >
-                          Explore Top Job Opportunities
-                        </Button>
-                      </div>
-                    </Box>
-                  </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <Box position="relative" display="inline-block">
-                    <ReactPlayer
-                      url='Welcome to the Team.mp4' // Replace with the actual path to your video file
-                      playing={playVideo}
-                      controls={true}
-                      width='100%'
-                      height='100%'
-                      onClick={() => setPlayVideo(!playVideo)} // Control play state on click
-                    />
+          <Grid container spacing={4}>
+            <Grid item xs={12} lg={5}>
+              <Card
+                className={classes.card}
+                data-aos-delay="200"
+                data-aos="zoom-in"
+              >
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="space-between"
+                  height="100%"
+                >
+                  <Box mb={4}>
+                    <Typography variant={isWidthUpLg ? "h3" : "h4"}>
+                      <strong>Stand Out in Job Search</strong>
+                    </Typography>
                   </Box>
-                </Grid>
-     
+                  <div>
+                    <Box mb={2}>
+                      <Typography
+                        variant={isWidthUpLg ? "h6" : "body1"}
+                        color="textSecondary"
+                      >
+                        <ul className={classes.bulletPoints}>
+                          <li>Precise AI skill evaluation</li>
+                          <li>Verified expertise visibility</li>
+                          <li>Unique employee offers</li>
+                        </ul>
+                      </Typography>
+                    </Box>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      fullWidth
+                      className={classes.extraLargeButton}
+                      classes={{ label: classes.extraLargeButtonLabel }}
+                      onClick={handleOpenDialog}
+                    >
+                      Explore Top Job Opportunities
+                    </Button>
+                  </div>
                 </Box>
-              </div>
-            </Card>
-          </Box>
+              </Card>
+            </Grid>
+            <Grid item xs={12} lg={7}>
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="100%"
+                maxWidth="100%"
+              >
+                <ReactPlayer
+                  url="Welcome to the Team.mp4"
+                  playing={playVideo}
+                  controls={true}
+                  width="100%"
+                  height="100%"
+                  style={{ maxWidth: "100%" }}
+                  onClick={() => setPlayVideo(!playVideo)} // Control play state on click
+                />
+              </Box>
+            </Grid>
+          </Grid>
         </div>
       </div>
       <WaveBorder
@@ -254,14 +250,11 @@ function HeadSection(props) {
         className={classes.waveBorder}
         animationNegativeDelay={2}
       />
-      <VideoModal
-      open={videoModalOpen}
-      handleClose={() => setVideoModalOpen(false)}
-      videoSrc="Welcome to the Team.mp4" // The source link of your video
-    />
     </Fragment>
   );
-}
+};
+
+
 
 HeadSection.propTypes = {
   classes: PropTypes.object,

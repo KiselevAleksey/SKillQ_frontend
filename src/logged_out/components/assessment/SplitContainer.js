@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import VideoToGifPlayer from './VideoToGifPlayer';
 import UserVideoRecorder from './UserVideoRecorder';
+import { Typography } from '@mui/material';
 
 const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
-                            setShowRegistrationModal, autoStart }) => {
+                            setShowRegistrationModal, autoStart, questionText }) => {
   console.log('Rendering SplitContainer');
 
   const [showGif, setShowGif] = useState(false);
@@ -15,16 +16,22 @@ const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
   };
 
   return (
-    <div className="split-container" style={{ display: 'flex', width: '100%' }}>
-      <div style={{ width: '50%' }}>
-        <VideoToGifPlayer src={videoSrc} onVideoEnd={handleVideoEnd} />
+    <div className="split-container" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ display: 'flex', flexGrow: 1 }}>
+        <div style={{ width: '50%', height: '100%' }}>
+          <VideoToGifPlayer src={videoSrc} onVideoEnd={handleVideoEnd} />
+        </div>
+        <div style={{ width: '50%', height: '100%' }}>
+          <UserVideoRecorder 
+            onRef={onRef} 
+            setVideoStarted={setVideoStarted}
+            setRecording={setRecording}
+            setShowRegistrationModal={setShowRegistrationModal}
+          />
+        </div>
       </div>
-      <div style={{ width: '50%' }}>
-        <UserVideoRecorder 
-          onRef={onRef} 
-          setVideoStarted={setVideoStarted}
-          setRecording={setRecording}
-          setShowRegistrationModal={setShowRegistrationModal}        />
+      <div style={{ padding: '16px' }}> {/* Add padding for the question */}
+        <Typography variant="h6">{questionText}</Typography>
       </div>
     </div>
   );
