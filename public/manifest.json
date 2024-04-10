@@ -1,0 +1,25 @@
+{
+  "short_name": "SkillQ",
+  "name": "SkillQ react template",
+  "icons": [
+    {
+      "src": "skillQ_logo.ico",
+      "sizes": "64x64 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "skillQ_brand-250x250.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "skillQ_brand-500x500.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#b3294e",
+  "background_color": "#f5f5f5"
+}
