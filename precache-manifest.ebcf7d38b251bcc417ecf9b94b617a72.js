@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "52e2ba70c0cc7d19c529d852a5cca4d5",
+    "revision": "2b74e51a0f7a8d2bb3e350f4f3f2be08",
     "url": "/SKillQ_frontend/index.html"
   },
   {
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SKillQ_frontend/static/js/22.79dcb83f.chunk.js"
   },
   {
-    "revision": "ae698d27c13e7341de70",
-    "url": "/SKillQ_frontend/static/js/23.4df8ca19.chunk.js"
+    "revision": "ac4896ee32f9f466be69",
+    "url": "/SKillQ_frontend/static/js/23.baa7073d.chunk.js"
   },
   {
     "revision": "1fd574988a9c3152f948",
@@ -144,7 +144,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SKillQ_frontend/static/js/reactPlayerYouTube.9968eecf.chunk.js"
   },
   {
-    "revision": "14eedc8bf483b2619bd3",
-    "url": "/SKillQ_frontend/static/js/runtime~main.ae3199ca.js"
+    "revision": "7164299906c7234bb78c",
+    "url": "/SKillQ_frontend/static/js/runtime~main.91577249.js"
   }
 ]);
