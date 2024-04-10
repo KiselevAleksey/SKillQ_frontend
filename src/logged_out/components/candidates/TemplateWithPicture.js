@@ -51,8 +51,8 @@ const TemplateWithPicture = () => {
     <div> {/* Add padding around the entire section */}
       <Grid container spacing={4} className={classes.root}>
         <Grid item xs={12} md={6}>
-          <img
-            src="/images/logged_out/image_2.png" // Replace with your image path
+        <img
+            src={`${process.env.PUBLIC_URL}/images/logged_out/image_2.png`}
             alt="Your Alt Text"
             className={classes.image}
           />

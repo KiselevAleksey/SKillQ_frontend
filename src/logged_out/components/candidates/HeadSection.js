@@ -229,15 +229,15 @@ function HeadSection(props) {
                 alignItems="center"
                 height="100%"
                 maxWidth="100%"
-              >
+                >
                 <ReactPlayer
-                  url="Welcome to the Team.mp4"
+                  url={`${process.env.PUBLIC_URL}/Welcome to the Team.mp4`}
                   playing={playVideo}
                   controls={true}
                   width="100%"
                   height="100%"
                   style={{ maxWidth: "100%" }}
-                  onClick={() => setPlayVideo(!playVideo)} // Control play state on click
+                  onClick={() => setPlayVideo(!playVideo)}
                 />
               </Box>
             </Grid>

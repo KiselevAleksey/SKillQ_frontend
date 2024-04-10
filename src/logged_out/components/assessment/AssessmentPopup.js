@@ -116,7 +116,7 @@ const AssessmentPopup = ({ onClose }) => {
       ) : (
         <>
           {!isVideoEnded && (
-            <VideoPlayer onVideoEnd={handleVideoEnd} src="intro_video.mp4" />
+            <VideoPlayer onVideoEnd={handleVideoEnd} src={`${process.env.PUBLIC_URL}/intro_video.mp4`} />
           )}
           {isVideoEnded && !userIsReady && (
             <VideoEndButton onReady={handleUserReady} />
