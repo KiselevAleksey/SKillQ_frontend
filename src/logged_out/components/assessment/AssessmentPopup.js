@@ -69,8 +69,9 @@ const AssessmentPopup = ({ onClose }) => {
         stopVideo(localVideoRef, setVideoStarted);
     }
 
-    onClose?.();
+    if (onClose) onClose(); // Updated this line
   };
+
 
 
   const setStopVideoStream = useCallback((stopFunction) => {
@@ -86,7 +87,7 @@ const AssessmentPopup = ({ onClose }) => {
       setUserIsReady(false); // Reset ready state for the next question
     } else {
       console.log('Assessment completed');
-      onClose?.(); // Close the popup if no more questions are left
+      if (onClose) onClose(); // Updated this line
     }
   };
 
