@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserVideoRecorder = ({ onRef }) => {
+const UserVideoRecorder = ({ onRef, onNextQuestion }) => {
   const localVideoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [videoStarted, setVideoStarted] = useState(false);
@@ -40,49 +40,84 @@ const UserVideoRecorder = ({ onRef }) => {
   const [timer, setTimer] = useState(300); // Timer starts at 5 minutes (300 seconds)
   const classes = useStyles();
 
+  const handleDataAvailable = (event) => {
+    console.log('Data available from recording');
+    if (event.data.size > 0) {
+      downloadRecording(event.data);
+    }
+  };
+
+  const downloadRecording = (blob) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'recorded_video.webm'; // You could also use a timestamp or unique identifier here
+    a.style.display = 'none';
+    document.body.appendChild(a); // Append the anchor to the body
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a); // Clean up
+    console.log('Recording finished and video downloaded');
+  };
+
   useEffect(() => {
-    startVideo(localVideoRef, setVideoStarted);
+    // Start video and recording setup
+    const startUp = async () => {
+      console.log('Initializing video and recording setup');
+      await startVideo(localVideoRef, setVideoStarted);
+    
+      const checkAndStartRecording = () => {
+        console.log('Checking if stream is active for recording');
+        if (localVideoRef.current && localVideoRef.current.srcObject && localVideoRef.current.srcObject.active) {
+          console.log('Stream is active, starting recording');
+          startRecording(localVideoRef, setRecording, mediaRecorderRef, handleDataAvailable);
+        } else {
+          console.log('Stream is not active, retrying in 1 second');
+          setTimeout(checkAndStartRecording, 1000); // Retry after 1 second
+        }
+      };
+    
+      checkAndStartRecording();
+    };    
+    console.log('Video started, now checking stream status every 1 second to start recording if active');
 
-    const recordingDelay = setTimeout(() => {
-      if (localVideoRef.current && localVideoRef.current.srcObject) {
-        startRecording(localVideoRef, setRecording, mediaRecorderRef);
-      }
-    }, 1000);
-
+    startUp();
+  
     // Timer countdown
     const timerInterval = setInterval(() => {
-      setTimer((prevTime) => prevTime - 1);
+      setTimer(prevTime => prevTime - 1);
     }, 1000);
-
-    if (onRef) {
-      onRef(() => {
-        if (recording) {
-          stopRecording(mediaRecorderRef, setRecording);
-        }
-        stopVideo(localVideoRef, setVideoStarted);
-      });
-    }
-
-    // Cleanup function
+  
+    // Cleanup function to stop video and clear interval on component unmount
     return () => {
-      clearTimeout(recordingDelay);
       clearInterval(timerInterval);
-      if (recording) {
-        stopRecording(mediaRecorderRef, setRecording);
-      }
+      console.log('Component unmounting, attempting to stop video');
       stopVideo(localVideoRef, setVideoStarted);
+      if (mediaRecorderRef.current) {
+          console.log('Clearing ondataavailable function from mediaRecorderRef');
+          mediaRecorderRef.current.ondataavailable = null;
+      }
     };
-  }, [onRef]);
+  }, []);
 
   // Function to handle "Next Question" button click
-  const handleNextQuestion = () => {
-    // Stop recording and video
-    if (recording) {
-      stopRecording(mediaRecorderRef, setRecording);
-    }
-    stopVideo(localVideoRef, setVideoStarted);
-    // Implement your logic to go to the next question here
-  };
+    const handleNextQuestion = () => {
+        console.log('Next Question button clicked');
+        if (recording) {
+            console.log('Recording in progress, attempting to stop recording');
+            stopRecording(mediaRecorderRef, setRecording, (completeBlob) => {
+                downloadRecording(completeBlob);
+                console.log('Recording stopped and downloaded, now stopping video');
+                stopVideo(localVideoRef, setVideoStarted);
+                onNextQuestion();
+            });
+        } else {
+            console.log('Not recording, directly stopping video');
+            stopVideo(localVideoRef, setVideoStarted);
+            onNextQuestion();
+        }
+    };
+
 
   // Format the timer to display as mm:ss
   const formatTimer = () => {
@@ -102,10 +137,10 @@ const UserVideoRecorder = ({ onRef }) => {
     <div className={classes.videoContainer}>
       <video ref={localVideoRef} autoPlay muted className={classes.videoElement} />
       <div className={classes.timerAndButton}>
-      <Typography variant="body1">
-        Please reply, next question in {formatTimer()}
+        <Typography variant="body1">
+          Please reply, next question in {formatTimer()}
         </Typography>
-        <Button variant="contained" color="primary" onClick={handleNextQuestion}>
+        <Button variant="contained" color="primary" onClick={handleNextQuestion} disabled={!videoStarted}>
           Next Question
         </Button>
       </div>

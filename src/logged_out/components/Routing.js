@@ -5,7 +5,6 @@ import PropsRoute from "../../shared/components/PropsRoute";
 import Candidates from "./candidates/Candidates";
 import AssessmentPage from "./assessment/AssessmentPage";
 import HR from "./HR/HR";
-import BlogPost from "./HR/HRPost";
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
 function Routing(props) {
@@ -24,28 +23,12 @@ function Routing(props) {
         path="/HR"
         component={HR}
         selectBlog={selectBlog}
-        blogPosts={blogPosts}
       />
       <PropsRoute
         exact
         path="/assessment"
         component={AssessmentPage}
       />
-      {blogPosts.map((post) => (
-        <PropsRoute
-          exact
-          path={post.url}
-          component={BlogPost}
-          title={post.title}
-          key={post.title}
-          src={post.src}
-          date={post.date}
-          content={post.content}
-          otherArticles={blogPosts.filter(
-            (blogPost) => blogPost.id !== post.id
-          )}
-        />
-      ))}
     </Switch>
   );
 }

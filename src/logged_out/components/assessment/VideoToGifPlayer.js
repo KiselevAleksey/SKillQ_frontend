@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const VideoToGifPlayer = ({ videoSrc = 'result_voice.mp4', gifSrc = 'slow_gif.gif' }) => {
+const VideoToGifPlayer = ({ videoSrc, gifSrc = 'slow_gif.gif' }) => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   const handleVideoEnd = () => {

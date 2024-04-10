@@ -69,7 +69,8 @@ function NavBar(props) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div>
+        <div>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Typography
               variant="h4"
               className={classes.brandText}
@@ -86,7 +87,8 @@ function NavBar(props) {
             >
               Q
             </Typography>
-          </div>
+          </Link>
+        </div>
           <div>
             <Hidden mdUp>
               <IconButton

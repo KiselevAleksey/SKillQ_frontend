@@ -4,7 +4,7 @@ import UserVideoRecorder from './UserVideoRecorder';
 import { Typography } from '@mui/material';
 
 const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
-                            setShowRegistrationModal, autoStart, questionText }) => {
+                          setShowRegistrationModal, autoStart, questionText, onNextQuestion }) => {
   console.log('Rendering SplitContainer');
 
   const [showGif, setShowGif] = useState(false);
@@ -19,7 +19,13 @@ const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
     <div className="split-container" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ display: 'flex', flexGrow: 1 }}>
         <div style={{ width: '50%', height: '100%' }}>
-          <VideoToGifPlayer src={videoSrc} onVideoEnd={handleVideoEnd} />
+          {!showGif ? (
+            <VideoToGifPlayer videoSrc={videoSrc} onVideoEnd={handleVideoEnd} autoStart={autoStart} />
+          ) : (
+            <div style={{ width: '450px', height: '450px' }}> {/* Adjust the style as needed */}
+              {/* You can place your GIF or any other content here */}
+            </div>
+          )}
         </div>
         <div style={{ width: '50%', height: '100%' }}>
           <UserVideoRecorder 
@@ -27,6 +33,7 @@ const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
             setVideoStarted={setVideoStarted}
             setRecording={setRecording}
             setShowRegistrationModal={setShowRegistrationModal}
+            onNextQuestion={onNextQuestion} // Pass the onNextQuestion handler
           />
         </div>
       </div>

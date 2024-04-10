@@ -1,6 +1,5 @@
 // VideoUtils/VideoUtils.js
 
-// VideoUtils.js
 export const startVideo = (videoRef, setVideoStarted, onStreamReady) => {
   console.log('Starting video');
   setVideoStarted(true);
@@ -20,18 +19,21 @@ export const startVideo = (videoRef, setVideoStarted, onStreamReady) => {
 
 
 // VideoUtils.js
-// VideoUtils.js
+
 export const stopVideo = (videoRef, setVideoStarted) => {
-  console.log('Stopping video');
-  if (videoRef.current && videoRef.current.srcObject) {
-      // Get all tracks from the video stream and stop each one
-      const tracks = videoRef.current.srcObject.getTracks();
-      tracks.forEach(track => track.stop());
+    console.log('Attempting to stop video');
+    if (videoRef.current && videoRef.current.srcObject) {
+        const tracks = videoRef.current.srcObject.getTracks();
+        tracks.forEach(track => {
+            console.log(`Stopping ${track.kind} track`);
+            track.stop();
+        });
 
-      // Clear the srcObject of the video element
-      videoRef.current.srcObject = null;
-
-      setVideoStarted(false);
-  }
-  console.log('Video is stopped');
+        videoRef.current.srcObject = null;
+        setVideoStarted(false);
+        console.log('Video stream and camera stopped');
+    } else {
+        console.log('No active video stream to stop');
+    }
 };
+

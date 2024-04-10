@@ -30,7 +30,6 @@ const AssessmentPage = () => {
   const [showAssessmentPopup, setShowAssessmentPopup] = useState(false);
 
   const openAssessmentPopup = () => setShowAssessmentPopup(true);
-  const closeAssessmentPopup = () => setShowAssessmentPopup(false);
 
   return (
     <>
@@ -48,7 +47,11 @@ const AssessmentPage = () => {
         </Grid>
       </Container>
       <Backdrop className={classes.backdrop} open={showAssessmentPopup} />
-      {showAssessmentPopup && <AssessmentPopup onClose={closeAssessmentPopup} />}
+      {showAssessmentPopup && (
+        <AssessmentPopup
+          onClose={() => setShowAssessmentPopup(false)}
+        />
+      )}
     </>
   );
 };

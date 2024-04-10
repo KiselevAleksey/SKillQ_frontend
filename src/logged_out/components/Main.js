@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useCallback } from "react";
+import React, { memo, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import AOS from "aos/dist/aos";
 import withStyles from '@mui/styles/withStyles';
@@ -7,7 +7,6 @@ import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
-import dummyBlogPosts from "../dummy_data/blogPosts";
 import DialogSelector from "./register_login/DialogSelector";
 import Routing from "./Routing";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
@@ -72,23 +71,6 @@ function Main(props) {
     setDialogOpen("changePassword");
   }, [setDialogOpen]);
 
-  const fetchBlogPosts = useCallback(() => {
-    const blogPosts = dummyBlogPosts.map((blogPost) => {
-      let title = blogPost.title;
-      title = title.toLowerCase();
-      /* Remove unwanted characters, only accept alphanumeric and space */
-      title = title.replace(/[^A-Za-z0-9 ]/g, "");
-      /* Replace multi spaces with a single space */
-      title = title.replace(/\s{2,}/g, " ");
-      /* Replace space with a '-' symbol */
-      title = title.replace(/\s/g, "-");
-      blogPost.url = `/HR/post/${title}`;
-      blogPost.params = `?id=${blogPost.id}`;
-      return blogPost;
-    });
-    setBlogPosts(blogPosts);
-  }, [setBlogPosts]);
-
   const handleCookieRulesDialogOpen = useCallback(() => {
     setIsCookieRulesDialogOpen(true);
   }, [setIsCookieRulesDialogOpen]);
@@ -96,8 +78,6 @@ function Main(props) {
   const handleCookieRulesDialogClose = useCallback(() => {
     setIsCookieRulesDialogOpen(false);
   }, [setIsCookieRulesDialogOpen]);
-
-  useEffect(fetchBlogPosts, [fetchBlogPosts]);
 
   return (
     <div className={classes.wrapper}>
