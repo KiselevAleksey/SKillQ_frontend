@@ -36,8 +36,6 @@ const styles = theme => ({
 function NavBar(props) {
   const {
     classes,
-    openRegisterDialog,
-    openLoginDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
     mobileDrawerOpen,
@@ -55,13 +53,13 @@ function NavBar(props) {
       icon: <BookIcon className="text-white" />
     },
     {
+      link: "/Register",
       name: "Register",
-      onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />
     },
     {
+      link: "/Login",
       name: "Login",
-      onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />
     }
   ];

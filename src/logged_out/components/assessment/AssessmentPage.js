@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 import BenefitsOfAssessment from './BenefitsOfAssessment';
 import AssessmentRules from './AssessmentRules';
 import AssessmentPopup from './AssessmentPopup';
+import RegistrationModal from './RegistrationModal'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,19 +22,29 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 }));
 
 const AssessmentPage = () => {
   const classes = useStyles();
   const [showAssessmentPopup, setShowAssessmentPopup] = useState(false);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
   const openAssessmentPopup = () => setShowAssessmentPopup(true);
 
+  const handleCloseAssessmentPopup = () => {
+    setShowAssessmentPopup(false);
+    setShowRegistrationModal(true); // Open registration modal after assessment popup is closed
+  };
+
+  const handleCloseRegistrationModal = () => {
+    setShowRegistrationModal(false);
+  };
+
   return (
     <>
-      <Container maxWidth="lg" className={classes.root}>
+    <Container maxWidth="lg" className={classes.root}>
         <Typography variant="h4" align="center" className={classes.header}>
           Personal Assessment
         </Typography>
@@ -48,10 +59,12 @@ const AssessmentPage = () => {
       </Container>
       <Backdrop className={classes.backdrop} open={showAssessmentPopup} />
       {showAssessmentPopup && (
-        <AssessmentPopup
-          onClose={() => setShowAssessmentPopup(false)}
-        />
+        <AssessmentPopup onClose={handleCloseAssessmentPopup} />
       )}
+      <RegistrationModal 
+        isOpen={showRegistrationModal} 
+        onRequestClose={handleCloseRegistrationModal} 
+      />
     </>
   );
 };

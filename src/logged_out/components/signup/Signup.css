@@ -1,0 +1,119 @@
+/* Signup.css */
+
+/* General container alignment to center */
+.signup {
+    text-align: center;
+}
+
+/* Main container for the signup form, similar to login__form */
+.signup__form {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px; /* Match the width with Login if needed */
+    margin-top: 15px;
+    box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+    padding: 2rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    background: #ffffff;
+}
+
+/* Top section of the signup form for titles or images */
+.signup__formTop {
+    margin-top: 20px;
+}
+
+.signup__formTop > h2 {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 1.5rem;
+}
+
+/* Middle section of the form for input fields and buttons */
+.signup__formMiddle {
+    display: flex;
+    flex-direction: column;
+    margin: 0 35px; /* Adjust if necessary to match login form */
+    text-align: initial;
+}
+
+.signup__formMiddle > button {
+    background-color: #007fed;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.signup__formMiddle > button:hover {
+    background-color: #0a58ca; /* Darker blue on hover */
+    transform: scale(1.05); /* Grow effect for interaction */
+}
+
+/* Style for the select dropdown, matching input fields in login */
+.select-shared {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #ffffff;
+    font-size: 16px;
+    width: 100%; /* Ensure full width */
+}
+
+/* Footer section of the signup form for secondary actions or links */
+.signup__formBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.signup__formBottom > a {
+    color: #0d6efd; /* Match the button color for consistency */
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.signup__formBottom > a:hover {
+    text-decoration: underline; /* Underline on hover for emphasis */
+}
+
+/* If you have any horizontal rules or additional text */
+.signup__formBottom > hr {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.signup__formBottom > h5 {
+    font-size: 30;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.signup__formBottom > h5 > a {
+    text-decoration: none;
+    color: blue;
+}
+
+.signup__formBottom > h5 > a:hover {
+    text-decoration: underline;
+}
+
+/* Add any specific image styles if necessary */
+.signup__formTop > img, .signup__formBottom > img {
+    /* Image styles */
+}
+
+/* Responsive adjustments if needed */
+@media (max-width: 768px) {
+    .signup__form, .signup__formMiddle {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
