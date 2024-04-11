@@ -1,52 +1,52 @@
-// import React from 'react';
-// import { makeStyles } from '@mui/styles';
-
-// const useStyles = makeStyles((theme) => ({
-//   petal: {
-//     cursor: 'pointer',
-//     transition: 'fill 0.3s ease',
-//     '&:hover': {
-//       fill: 'rgba(255, 255, 255, 0.7)', // Lighten the petal color on hover
-//     },
-//   },
-// }));
-
-// const Petal = ({ scale = 1, label, onDoubleClick }) => {
-//     const classes = useStyles();
-  
-//     // Use the scale prop to adjust the size of each petal
-//     const petalStyle = {
-//       transform: `scale(${scale})`,
-//       transformOrigin: 'center',
-//     };
-  
-//     return (
-//       <svg width="100" height="100" className={classes.petal} style={petalStyle} onDoubleClick={onDoubleClick}>
-//         <path
-//           d="M50,50 L75,0 Q50,-50 25,0 L50,50" // Placeholder path
-//           fill="rgba(255, 0, 0, 0.5)" // Semi-transparent red fill
-//           stroke="black"
-//           strokeWidth="1"
-//         />
-//         <text x="50" y="50" textAnchor="middle" fill="black">{label}</text>
-//       </svg>
-//     );
-//   };
-  
-//   export default Petal;
-
-
 // Petal.js
 import React from 'react';
+import * as d3 from 'd3';
+import { makeStyles } from '@mui/styles';
 
-const Petal = ({ size, label }) => {
+const useStyles = makeStyles({
+  petal: {
+    cursor: 'pointer',
+    '&:hover': {
+      fillOpacity: 0.7,
+    },
+  },
+  petalText: {
+    fill: '#000',
+    textAnchor: 'middle',
+    dominantBaseline: 'middle',
+    fontSize: '14px',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    pointerEvents: 'none',
+  },
+});
+
+const Petal = ({ size, label, angle, color, index, radius, onClick }) => {
+  const styles = useStyles();
+  const arcGenerator = d3.arc()
+    .innerRadius(radius * 0.5)
+    .outerRadius(radius * 0.5 + size * 20)
+    .startAngle(angle - 0.4)
+    .endAngle(angle + Math.PI / 3 + 0.05);
+
+  const textArcGenerator = d3.arc()
+    .innerRadius(radius * 0.5)
+    .outerRadius(radius * 0.5 + size * 20)
+    .startAngle(angle - 0.4)
+    .endAngle(angle + Math.PI / 3);
+
+  const [labelX, labelY] = textArcGenerator.centroid();
+  const rotation = (angle + angle + Math.PI / 3) / 2 * (180 / Math.PI);
+
   return (
-    <svg width={100 * size} height={100 * size} style={{ border: '1px solid black' }}>
-      <circle cx={50 * size} cy={50 * size} r={40 * size} fill="red" />
-      <text x={50 * size} y={50 * size} textAnchor="middle" fill="white">
+    <g onClick={() => onClick(index)}>
+      <path d={arcGenerator()} fill={color} className={styles.petal} />
+      <text
+        transform={`translate(${labelX}, ${labelY}) rotate(${rotation})`}
+        className={styles.petalText}
+      >
         {label}
       </text>
-    </svg>
+    </g>
   );
 };
 
