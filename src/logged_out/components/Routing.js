@@ -48,7 +48,7 @@ function Routing(props) {
         exact
         path="/diagram"
         component={PetalDiagram}
-        userData={{ photoUrl: 'images/logged_in/image3.jpg' }}
+        userData={{ }}
       />
     </Switch>
   );
