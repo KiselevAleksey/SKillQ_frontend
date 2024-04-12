@@ -7,8 +7,8 @@ import AssessmentPage from "./assessment/AssessmentPage";
 import HR from "./HR/HR";
 import FreelancerSignup from "./signup/FreelancerSignup/FreelancerSignup";
 import Login from "./login/Login";
-import PetalDiagram from "./test/PetalDiagram";
-
+import PetalDiagram from "./petals/PetalDiagram";
+import TabsComponent from "./TabbedInterface/components/TabsComponent";
 
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
@@ -48,6 +48,12 @@ function Routing(props) {
         exact
         path="/diagram"
         component={PetalDiagram}
+        userData={{ }}
+      />
+      <PropsRoute
+        exact
+        path="/tabs"
+        component={TabsComponent}
         userData={{ }}
       />
     </Switch>

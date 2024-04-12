@@ -5,7 +5,6 @@ import { AppBar, Toolbar, Typography, Button, Hidden, IconButton } from "@mui/ma
 import withStyles from '@mui/styles/withStyles';
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import BookIcon from "@mui/icons-material/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
@@ -44,18 +43,13 @@ function NavBar(props) {
   const menuItems = [
     {
       link: "/",
-      name: "For Candidates",
+      name: "For Talents",
       icon: <HomeIcon className="text-white" />
     },
     {
       link: "/HR",
-      name: "For HR",
+      name: "For HR and Hiring Managers",
       icon: <BookIcon className="text-white" />
-    },
-    {
-      link: "/Register",
-      name: "Register",
-      icon: <HowToRegIcon className="text-white" />
     },
     {
       link: "/Login",
