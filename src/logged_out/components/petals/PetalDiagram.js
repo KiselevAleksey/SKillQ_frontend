@@ -103,59 +103,53 @@ const PetalDiagram = ({ userData }) => {
 
 
   return (
-    <div style={{ display: 'flex', height: '100vh', alignItems: 'center' }}>
-      <div style={{ flexGrow: selectedPetal ? 0 : 1, display: 'flex', justifyContent: 'center' }}>
-        <svg
-          width={width}
-          height={height}
-          viewBox={`0 0 ${width} ${height}`}
-          overflow="visible"
-        >
-          <g transform={`translate(${centerX}, ${centerY})`}>
-            {petals}
-            {userData.photoUrl ? (
-              <image
-                href={userData.photoUrl}
-                x={-radius * 0.5}
-                y={-radius * 0.5}
-                height={radius}
-                width={radius}
-                clipPath="url(#circleView)"
-              />
-            ) : (
-              <foreignObject x={-radius * 0.5} y={-radius * 0.5} width={radius} height={radius}>
-                <AccountCircleIcon
-                  style={{ 
-                    width: '100%', 
-                    height: '100%' 
-                  }}
-                />
-              </foreignObject>
-            )}
-            <clipPath id="circleView">
-              <circle cx={0} cy={0} r={radius * 0.5} />
-            </clipPath>
-            {bubbles} {/* Render bubbles after the image */}
-            <Legend />
-          </g>
-          {/* Adding text at the top */}
-          <text
-            x={centerX}
-            y={20}
-            textAnchor="middle"
-            alignmentBaseline="central"
-            fontSize="24px" // Adjust font size as needed
-            fontFamily="'Roboto', 'Helvetica', 'Arial', sans-serif"
-            fill="#333" // Adjust text color as needed
+    <div>
+      <div style={{ textAlign: 'center', paddingTop: '120px' }}> {/* Added paddingBottom */}
+        <h1 style={{ fontSize: '32px', fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' }}>
+          Results of the Assessment
+        </h1>
+      </div>
+      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}> {/* Centered flex container */}
+        <div style={{ flexGrow: selectedPetal ? 0.5 : 1, display: 'flex', justifyContent: 'center' }}> {/* Adjusted flexGrow */}
+          <svg
+            width={width}
+            height={height}
+            viewBox={`0 0 ${width} ${height}`}
+            overflow="visible"
           >
-            Results of the Assessment
-          </text>
-        </svg>
+            <g transform={`translate(${centerX}, ${centerY})`}>
+              {petals}
+              {userData.photoUrl ? (
+                <image
+                  href={userData.photoUrl}
+                  x={-radius * 0.5}
+                  y={-radius * 0.5}
+                  height={radius}
+                  width={radius}
+                  clipPath="url(#circleView)"
+                />
+              ) : (
+                <foreignObject x={-radius * 0.5} y={-radius * 0.5} width={radius} height={radius}>
+                  <AccountCircleIcon
+                    style={{ 
+                      width: '100%', 
+                      height: '100%' 
+                    }}
+                  />
+                </foreignObject>
+              )}
+              <clipPath id="circleView">
+                <circle cx={0} cy={0} r={radius * 0.5} />
+              </clipPath>
+              {bubbles}
+              <Legend />
+            </g>
+          </svg>
         </div>
-      {selectedPetal && <Summary petal={selectedPetal} />}
+        {selectedPetal && <Summary petal={selectedPetal} />}
+      </div>
     </div>
   );
-  
 };
 
 export default PetalDiagram;
