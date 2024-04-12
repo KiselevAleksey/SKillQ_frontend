@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import HeadSection from "./HeadSection";
 import FeaturesSection from "./FeaturesSection";
-import TemplateWithPicture from "./TemplateWithPicture";
+import VideoSection from "./VideoSection";
 
 function Candidates(props) {
   const { selectHome } = props;
@@ -13,7 +13,7 @@ function Candidates(props) {
     <Fragment>
       <HeadSection />
       <FeaturesSection />
-      <TemplateWithPicture />
+      <VideoSection />
     </Fragment>
   );
 }

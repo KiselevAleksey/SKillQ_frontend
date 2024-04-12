@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import HeadSection from './HeadSection';
 import FeaturesSection from './FeaturesSection';
-import TemplateWithPicture from './TemplateWithPicture';
+import VideoSection from './VideoSection';
 
 function HR(props) {
   const { selectBlog } = props;
@@ -15,7 +15,7 @@ function HR(props) {
     <Fragment>
       <HeadSection />
       <FeaturesSection />
-      <TemplateWithPicture />
+      <VideoSection />
     </Fragment>
   );
 }

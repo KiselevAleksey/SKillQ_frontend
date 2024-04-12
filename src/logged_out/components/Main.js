@@ -30,13 +30,18 @@ function Main(props) {
     smoothScrollTop();
     document.title =
       "SkillQ - AI-based Career Pathing & Skill Assessment";
-    setSelectedTab("For Candidates");
+    setSelectedTab("For Talents");
   }, [setSelectedTab]);
 
   const selectBlog = useCallback(() => {
     smoothScrollTop();
     document.title = "SkillQ - HR";
     setSelectedTab("For HR");
+  }, [setSelectedTab]);
+
+  const selectTab = useCallback((tab) => {
+    setSelectedTab(tab);
+    // Additional logic if needed
   }, [setSelectedTab]);
 
   const handleMobileDrawerOpen = useCallback(() => {
@@ -68,7 +73,7 @@ function Main(props) {
       />
       <NavBar
         selectedTab={selectedTab}
-        selectTab={setSelectedTab}
+        setSelectedTab={setSelectedTab}
         mobileDrawerOpen={isMobileDrawerOpen}
         handleMobileDrawerOpen={handleMobileDrawerOpen}
         handleMobileDrawerClose={handleMobileDrawerClose}

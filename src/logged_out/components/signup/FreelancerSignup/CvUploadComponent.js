@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
-import { Button, FormControl, InputLabel, Typography, FormHelperText } from '@mui/material';
+import { Typography, Button, FormControl, FormHelperText, TextField } from '@mui/material';
 
 const CvUploadComponent = ({ onCvUpload }) => {
   const [cvFile, setCvFile] = useState(null);
+  const [linkedinUrl, setLinkedinUrl] = useState('');
   const [isFileValid, setIsFileValid] = useState(true);
+  const [isLinkedinUrlValid, setIsLinkedinUrlValid] = useState(true);
   const [isUploaded, setIsUploaded] = useState(false);
-  const fileInputRef = useRef(null); // Create a ref for the file input
+  const fileInputRef = useRef(null);
 
   const sendGAEvent = ({ action, category, label, value }) => {
     if (window.gtag) {
@@ -39,18 +41,53 @@ const CvUploadComponent = ({ onCvUpload }) => {
     }
   };
 
+  const handleLinkedinUrlChange = (e) => {
+    const url = e.target.value;
+    setLinkedinUrl(url);
+    setIsLinkedinUrlValid(validateLinkedinUrl(url));
+  };
+
+  const validateLinkedinUrl = (url) => {
+    const pattern = /^https?:\/\/(www\.)?linkedin\.com\/.*$/;
+    return pattern.test(url);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validLinkedinUrl = validateLinkedinUrl(linkedinUrl);
+  
     if (cvFile && isFileValid) {
-      onCvUpload(cvFile);
-      setIsUploaded(true);
+      if (validLinkedinUrl) {
+        onCvUpload(cvFile, linkedinUrl);
+        setIsUploaded(true);
+        sendGAEvent({
+          category: 'CV Upload',
+          action: 'Uploaded CV and LinkedIn URL',
+          label: 'CV and LinkedIn Upload Success'
+        });
+      } else {
+        setIsLinkedinUrlValid(false);
+        sendGAEvent({
+          category: 'CV Upload',
+          action: 'Invalid LinkedIn URL',
+          label: 'LinkedIn URL Validation Error'
+        });
+      }
+    } else if (!cvFile) {
       sendGAEvent({
         category: 'CV Upload',
-        action: 'Uploaded CV',
-        label: 'CV Upload Success'
+        action: 'No CV File',
+        label: 'CV File Missing'
+      });
+    } else if (!isFileValid) {
+      sendGAEvent({
+        category: 'CV Upload',
+        action: 'Invalid CV File',
+        label: 'CV File Validation Error'
       });
     }
   };
+  
 
   return (
     <div className="card">
@@ -74,6 +111,18 @@ const CvUploadComponent = ({ onCvUpload }) => {
             </Button>
             {cvFile && <div style={{ marginTop: '10px' }}>{cvFile.name}</div>}
             {!isFileValid && <FormHelperText>Please upload a PDF file.</FormHelperText>}
+          </FormControl>
+          <FormControl error={!isLinkedinUrlValid} component="fieldset" fullWidth>
+            <TextField
+              label="LinkedIn Profile URL"
+              variant="outlined"
+              value={linkedinUrl}
+              onChange={handleLinkedinUrlChange}
+              required
+              error={!isLinkedinUrlValid}
+              helperText={!isLinkedinUrlValid && "Please enter a valid LinkedIn URL."}
+              style={{ marginBottom: '20px' }}
+            />
           </FormControl>
           <Button 
             variant="contained" 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'; // Import useHistory instead of useNavigate
 import { Container, Paper, Typography, Button, Link } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -26,15 +26,16 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     marginTop: theme.spacing(1),
+    color: 'black'
   },
 }));
 
 function Signup() {
   const classes = useStyles();
-  let navigate = useNavigate();
+  let history = useHistory(); // Use useHistory instead of useNavigate
 
   const navigateToSignupType = (type) => {
-    navigate(`/${type}-signup`);
+    history.push(`/${type}-signup`); // Use push method to navigate
   };
 
   return (
@@ -47,23 +48,21 @@ function Signup() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => navigateToSignupType('freelancer')}
+            onClick={() => history.push(`/Register`)}
           >
-            Create Freelancer Profile
+            Create a Talant Profile
           </Button>
           <Button
             fullWidth
             variant="contained"
-            color="primary"
+            color="secondary"
             className={classes.submit}
-            onClick={() => navigateToSignupType('company')}
+            onClick={() => history.push(`/Register`)}
           >
-            Find a Freelancer
+            Find a Talant
           </Button>
         </div>
-        <Link href="/login" variant="body2" className={classes.link}>
-          Already have an account? Log in
-        </Link>
+      <a href="/login" className="forgot-password-link" style={{ textAlign: 'center', color: 'black'}}>Already have an account? Log in</a>
       </Paper>
     </Container>
   );

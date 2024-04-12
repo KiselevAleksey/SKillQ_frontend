@@ -11,7 +11,6 @@ import {
 import withStyles from "@mui/styles/withStyles";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MailIcon from "@mui/icons-material/Mail";
-import WaveBorder from "../../../shared/components/WaveBorder";
 import ColoredButton from "../../../shared/components/ColoredButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -76,11 +75,11 @@ const styles = (theme) => ({
 const infos = [
   {
     icon: <PhoneIcon />,
-    description: "+1 555 123456",
+    description: "+65 800 5804643",
   },
   {
     icon: <MailIcon />,
-    description: "support@company.com",
+    description: "support@skillq.com",
   },
 ];
 
@@ -99,7 +98,7 @@ const socialIcons = [
       </svg>
     ),
     label: "Github",
-    href: "https://github.com/dunky11/react-saas-template",
+    href: "https://github.com/",
   },
   {
     icon: (
@@ -157,11 +156,6 @@ function Footer(props) {
 
   return (
     <footer className="lg-p-top">
-      <WaveBorder
-        upperColor="#FFFFFF"
-        lowerColor={theme.palette.common.darkBlack}
-        animationNegativeDelay={4}
-      />
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUpMd ? 10 : 5}>
           <Grid item xs={12} md={6} lg={4}>
@@ -227,8 +221,8 @@ function Footer(props) {
               About the Company
             </Typography>
             <Typography style={{ color: "#8f9296" }} paragraph>
-              Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
-              euismod convallis velit, eu auctor lacus vehicula sit amet.
+            SkillQ is an innovative AI-powered platform that transforms tech talent assessment, 
+            connecting vetted professionals with top employers and facilitating continuous skill advancement.
             </Typography>
             <Box display="flex">
               {socialIcons.map((socialIcon, index) => (

@@ -9,8 +9,6 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { Container, Paper, TextField, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { Link } from 'react-router-dom';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -236,11 +234,9 @@ function Login() {
           </Button>
   
           {error && <Typography className={classes.errorText}>{error}</Typography>}
-          <div className="forgot-password-link" style={{ textAlign: 'center' }}>
-            <Link to="#" onClick={handleForgotPassword}>Forgot password? Reset.</Link>
-          </div>
         </form>
-        <a href="/signup" className="reg-link">Don't have an account? Sign up</a>
+        <a href="#" className="forgot-password-link" style={{ textAlign: 'center', color: 'black'}} onClick={handleForgotPassword}>Forgot password? Reset.</a>
+        <a href="/Signup" className="reg-link" style={{ color: 'black'}}> Don't have an account? Sign up</a>
       </Paper>
     </Container>
   );

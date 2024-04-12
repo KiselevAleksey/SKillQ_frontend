@@ -6,6 +6,7 @@ import Candidates from "./candidates/Candidates";
 import AssessmentPage from "./assessment/AssessmentPage";
 import HR from "./HR/HR";
 import FreelancerSignup from "./signup/FreelancerSignup/FreelancerSignup";
+import Signup from "./signup/Signup";
 import Login from "./login/Login";
 import PetalDiagram from "./petals/PetalDiagram";
 import TabsComponent from "./TabbedInterface/components/TabsComponent";
@@ -43,6 +44,11 @@ function Routing(props) {
         exact
         path="/login"
         component={Login}
+      />
+      <PropsRoute
+        exact
+        path="/signup"
+        component={Signup}
       />
       <PropsRoute
         exact

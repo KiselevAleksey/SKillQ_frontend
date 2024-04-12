@@ -29,7 +29,10 @@ const styles = theme => ({
   },
   noDecoration: {
     textDecoration: "none !important"
-  }
+  },
+  underline: {
+    textDecoration: 'underline',
+  },
 });
 
 function NavBar(props) {
@@ -93,34 +96,25 @@ function NavBar(props) {
             </Hidden>
             <Hidden mdDown>
               {menuItems.map(element => {
-                if (element.link) {
-                  return (
-                    <Link
-                      key={element.name}
-                      to={element.link}
-                      className={classes.noDecoration}
-                      onClick={handleMobileDrawerClose}
-                    >
-                      <Button
-                        color="secondary"
-                        size="large"
-                        classes={{ text: classes.menuButtonText }}
-                      >
-                        {element.name}
-                      </Button>
-                    </Link>
-                  );
-                }
+                const isSelected = selectedTab === element.name;
                 return (
-                  <Button
-                    color="secondary"
-                    size="large"
-                    onClick={element.onClick}
-                    classes={{ text: classes.menuButtonText }}
+                  <Link
                     key={element.name}
+                    to={element.link}
+                    className={classes.noDecoration}
+                    onClick={() => {
+                      handleMobileDrawerClose();
+                      props.setSelectedTab(element.name); // Call the function from props
+                    }}
                   >
-                    {element.name}
-                  </Button>
+                    <Button
+                      color="secondary"
+                      size="large"
+                      classes={{ text: isSelected ? `${classes.menuButtonText} ${classes.underline}` : classes.menuButtonText }}
+                    >
+                      {element.name}
+                    </Button>
+                  </Link>
                 );
               })}
             </Hidden>
@@ -145,7 +139,8 @@ NavBar.propTypes = {
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
   openRegisterDialog: PropTypes.func.isRequired,
-  openLoginDialog: PropTypes.func.isRequired
+  openLoginDialog: PropTypes.func.isRequired,
+  setSelectedTab: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(memo(NavBar));
