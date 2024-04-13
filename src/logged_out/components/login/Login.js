@@ -77,7 +77,7 @@ function Login() {
     accountType = accountType.trim().toLowerCase(); // Trim and convert to lower case
 
     if (accountType === 'freelancer') {
-      history.push('/dashboard'); // Changed to history.push
+      history.push('/c'); // Changed to history.push
     } else if (accountType === 'company') {
       history.push('/companydashboard'); // Changed to history.push
     } else {

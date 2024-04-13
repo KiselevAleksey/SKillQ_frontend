@@ -12,6 +12,8 @@ import PetalDiagram from "./petals/PetalDiagram";
 import TabsComponent from "./TabbedInterface/components/TabsComponent";
 import JobBoard from "./JobBoard/JobBoard";
 import UserProfile from "./UserProfile/UserProfile";
+import TestUpload from "./test/TestUpload";
+
 
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
@@ -74,6 +76,12 @@ function Routing(props) {
         exact
         path="/userProfile"
         component={UserProfile}
+        userData={{ }}
+      /> 
+      <PropsRoute
+        exact
+        path="/TestUpload"
+        component={TestUpload}
         userData={{ }}
       /> 
     </Switch>

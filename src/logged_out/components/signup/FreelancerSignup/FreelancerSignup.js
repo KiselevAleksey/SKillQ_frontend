@@ -4,21 +4,19 @@ import { Stepper, Step, StepLabel } from '@mui/material';
 import CvUploadComponent from './CvUploadComponent';
 import FirebaseAuthComponent from './FirebaseAuthComponent';
 import Button from '../SharedSignup/Button';
-import '../SharedSignup/SharedSignup.css'
+import '../SharedSignup/SharedSignup.css';
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
 
 const FreelancerSignup = () => {
   const [cvFile, setCvFile] = useState(null);
   const history = useHistory();
   const steps = ['Resume', 'Complete'];
+  const [accountType, setAccountType] = useState('freelancer'); // Assuming default account type is 'freelancer'
 
   const nextStep = () => {
-    // This would now be a simple toggle between the two steps, as there are only two.
     const nextStep = step === 1 ? 2 : 1;
     history.push(`?step=${nextStep}`);
-    // Logic for sending a Google Analytics event can be updated here as needed
   };
 
   const step = parseInt(new URLSearchParams(window.location.search).get('step') || '1', 10);
@@ -26,16 +24,11 @@ const FreelancerSignup = () => {
   const handleCvUpload = (file) => {
     setCvFile(file);
     if (file) {
-      nextStep(); // Automatically navigate to the next step after CV upload
+      nextStep(); 
     }
   };
 
   const handleSignupSuccess = async (user) => {
-    if (window.gtag) {
-      window.gtag('set', 'user_properties', {
-        user_id: user.uid,
-      });
-    }
     try {
       const db = getFirestore();
       const storage = getStorage();
@@ -48,14 +41,11 @@ const FreelancerSignup = () => {
       }
 
       const userProfile = {
-        // Replace the following properties with your actual data collection logic
-        // as necessary for your application.
         cvUrl: cvUrl,
-        // ...other user properties...
+        accountType: accountType, // Include account type
       };
 
       await setDoc(doc(db, "users", user.uid), userProfile);
-      // Additional actions upon successful sign-up, such as navigation, can be added here
     } catch (error) {
       console.error("Signup error", error);
       alert("There was an issue with your signup. Please try again.");
@@ -66,10 +56,10 @@ const FreelancerSignup = () => {
     console.error("Signup error", error);
     alert("There was an issue with your signup. Please try again.");
   };
-  
+
   const stepsComponents = {
     1: <CvUploadComponent onCvUpload={handleCvUpload} />,
-    2: <FirebaseAuthComponent onSignupSuccess={handleSignupSuccess} onSignupError={handleSignupError} />,
+    2: <FirebaseAuthComponent onSignupSuccess={handleSignupSuccess} onSignupError={handleSignupError} accountType={accountType} />,
   };
 
   const renderStep = () => stepsComponents[step] || <div>Check the information</div>;
@@ -85,13 +75,12 @@ const FreelancerSignup = () => {
           ))}
         </Stepper>
       </div>
-        
       {renderStep()}
       <div style={{ position: 'fixed', width: '100%', bottom: '20px', textAlign: 'center' }}>
         <Button onClick={nextStep}>{step === 1 ? 'Next' : 'Finish'}</Button>
       </div>
     </div>
-  );  
-}
+  );
+};
 
 export default FreelancerSignup;
