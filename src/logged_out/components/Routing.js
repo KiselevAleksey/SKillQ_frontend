@@ -10,6 +10,8 @@ import Signup from "./signup/Signup";
 import Login from "./login/Login";
 import PetalDiagram from "./petals/PetalDiagram";
 import TabsComponent from "./TabbedInterface/components/TabsComponent";
+import JobBoard from "./JobBoard/JobBoard";
+import UserProfile from "./UserProfile/UserProfile";
 
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
@@ -62,6 +64,18 @@ function Routing(props) {
         component={TabsComponent}
         userData={{ }}
       />
+      <PropsRoute
+        exact
+        path="/jobBoard"
+        component={JobBoard}
+        userData={{ }}
+      /> 
+      <PropsRoute
+        exact
+        path="/userProfile"
+        component={UserProfile}
+        userData={{ }}
+      /> 
     </Switch>
   );
 }
