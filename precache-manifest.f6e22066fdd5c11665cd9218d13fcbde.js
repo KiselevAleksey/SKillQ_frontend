@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "093c08c385ee466a97f1d8f94bcba39e",
+    "revision": "de1a7e34a481382de7e34283f47f8631",
     "url": "/SKillQ_frontend/index.html"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SKillQ_frontend/static/css/22.c2bc211b.chunk.css"
   },
   {
-    "revision": "c43fd6682330402883e3",
+    "revision": "801e231572c3fa18ce45",
     "url": "/SKillQ_frontend/static/css/23.81d38c7f.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SKillQ_frontend/static/js/22.0cc874a2.chunk.js"
   },
   {
-    "revision": "c43fd6682330402883e3",
-    "url": "/SKillQ_frontend/static/js/23.3471fa85.chunk.js"
+    "revision": "801e231572c3fa18ce45",
+    "url": "/SKillQ_frontend/static/js/23.89ce151a.chunk.js"
   },
   {
     "revision": "003fb44deaa45c8537a1",
@@ -140,7 +140,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SKillQ_frontend/static/js/reactPlayerYouTube.946faa9c.chunk.js"
   },
   {
-    "revision": "c0d97512e8d4aecdf723",
-    "url": "/SKillQ_frontend/static/js/runtime~main.cebce0c1.js"
+    "revision": "ddc45969fb45e6310ab9",
+    "url": "/SKillQ_frontend/static/js/runtime~main.3d226233.js"
   }
 ]);

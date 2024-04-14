@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/SKillQ_frontend/precache-manifest.acfe76a25c8281646e3b26aa6eddf7d5.js"
+  "/SKillQ_frontend/precache-manifest.f6e22066fdd5c11665cd9218d13fcbde.js"
 );
 
 self.addEventListener('message', (event) => {
