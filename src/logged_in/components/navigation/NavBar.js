@@ -18,9 +18,10 @@ import {
   Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ImageIcon from "@mui/icons-material/Image";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import PersonIcon from "@mui/icons-material/Person";
+import BubbleChartIcon from "@mui/icons-material/BubbleChart";
+import TabIcon from "@mui/icons-material/Tab";
+import WorkIcon from "@mui/icons-material/Work";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import MenuIcon from "@mui/icons-material/Menu";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
@@ -151,53 +152,67 @@ function NavBar(props) {
 
   const menuItems = [
     {
-      link: "/c/dashboard",
-      name: "Dashboard",
+      link: "/c/user-profile",
+      name: "User Profile",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <DashboardIcon
+          <PersonIcon
             className={
-              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
+              selectedTab === "User Profile" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <DashboardIcon className="text-white" />,
+        mobile: <PersonIcon className="text-white" />,
       },
     },
     {
-      link: "/c/posts",
-      name: "Posts",
+      link: "/c/diagram",
+      name: "Assessment results",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <ImageIcon
+          <BubbleChartIcon
             className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+              selectedTab === "Assessment results" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <ImageIcon className="text-white" />,
+        mobile: <BubbleChartIcon className="text-white" />,
       },
     },
     {
-      link: "/c/subscription",
-      name: "Subscription",
+      link: "/c/tabs",
+      name: "My expertise",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <AccountBalanceIcon
+          <TabIcon
             className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
+              selectedTab === "My expertise" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <AccountBalanceIcon className="text-white" />,
+        mobile: <TabIcon className="text-white" />,
+      },
+    },
+    {
+      link: "/c/job-board",
+      name: "Job Board",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <WorkIcon
+            className={
+              selectedTab === "Job Board" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <WorkIcon className="text-white" />,
       },
     },
     {
@@ -268,14 +283,14 @@ function NavBar(props) {
             >
               <Avatar
                 alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
+                src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg`}
                 className={classNames(classes.accountAvatar)}
               />
               {isWidthUpSm && (
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">Yulia Fomina</Typography>
                   }
                 />
               )}

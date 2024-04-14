@@ -1,27 +1,34 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
-    header: {
-        textAlign: 'center',
-        padding: '10px 0',
-        fontSize: '1.2rem',
-        color: '#263238', // Dark text for the header
-        fontWeight: 'bold',
-        backgroundColor: '#ECEFF1', // Light grey background
-      },
-      tabsFooter: {
-        textAlign: 'center',
-        padding: '10px 0',
-        fontSize: '1.1rem',
-        color: '#263238',
-      },
+  header: {
+      textAlign: 'center',
+      padding: '10px 0',
+      fontSize: '1.2rem',
+      color: '#263238', // Dark text for the header
+      fontWeight: 'bold',
+      backgroundColor: '#ECEFF1', // Light grey background
+  },
+  tabsFooter: {
+    textAlign: 'center',
+    padding: '10px 0',
+    fontSize: '1.1rem',
+    color: '#263238',
+  },
+  tabsHeader:{
+    paddingLeft: theme.spacing(2), 
+    },
   tabsContainer: {
     display: 'flex',
     flexDirection: 'row',
     height: '100vh',
-    backgroundColor: '#ECEFF1', // Light grey background
-    color: '#37474F', // Slate color for text
+    width: '100vw',
+    backgroundColor: '#ECEFF1',
+    color: '#37474F',
     fontFamily: theme.typography.fontFamily,
+    margin: 0,
+    padding: 0,
+    overflow: 'hidden',
   },
 
   tabListContainer: {
@@ -32,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#CFD8DC', // Text color for tabs
   },
   tabList: {
-    marginTop: '40px',
+    // marginTop: '40px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',

@@ -1,39 +1,42 @@
 import React from 'react';
 import { Avatar, Typography, Button, Card, CardContent, Box, Chip, Grid, Divider, Stack, Paper } from '@mui/material';
-import { blue } from '@mui/material/colors';
 
 const UserProfile = () => {
-  // Mock user data
   const userData = {
-    name: 'Aleksey Kiselev',
-    title: 'Consultant, Data Science Specialist at McKinsey & Company',
-    location: 'Singapore, Singapore',
-    connections: '500+',
+    name: 'Yuliya Fomina',
+    connectionDegree: '1st degree connection',
+    position: 'Senior Business Analyst at McKinsey & Company | ex-Google, Procter&Gamble',
+    company: 'McKinsey & Company',
+    university: 'Università Bocconi',
+    location: 'Federal Territory of Kuala Lumpur, Malaysia',
+    contactInfo: 'Contact info',
+    connectionsCount: '500+',
     experiences: [
       {
         id: 1,
-        role: 'Specialist Data Scientist',
+        role: 'Senior Business Analyst',
         company: 'McKinsey & Company',
-        duration: 'Jul 2022 - Present',
-        location: 'Singapore',
+        duration: 'Jan 2024 - Present',
+        location: 'Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia',
+        description:
+          'Developed strategies for new products\' market entry, establishment of new businesses, and business models refinement for clients based in Russia, Indonesia, Malaysia, Thailand, and Singapore',
       },
       // ...other experiences
     ],
     education: [
       {
         id: 1,
-        degree: "Master's degree, International Economics",
-        institution: 'Plekhanov Russian University of Economics',
-        duration: 'Sep 2018 - Jun 2020',
+        degree: "MSc in International Management",
+        institution: 'Università Bocconi',
+        accolades: ['#6 Master\'s in Management program worldwide according to Financial Times ranking 2018', 'Bocconi International Merit Award holder'],
       },
       // ...other education
     ],
     skills: [
-      {
-        id: 1,
-        name: 'Data Analytics',
-        endorsements: 2,
-      },
+      'Strategy',
+      'Market Entry',
+      'Business Analysis',
+      'Data Analysis',
       // ...other skills
     ],
   };
@@ -42,7 +45,7 @@ const UserProfile = () => {
   return (
     <Paper elevation={3} sx={{ maxWidth: 800, mx: 'auto', my: 4, p: 2 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: 2 }}>
-        <Avatar alt={userData.name} src="/path-to-image.jpg" sx={{ width: 90, height: 90, mb: 2 }} />
+        <Avatar alt={userData.name} src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg`} sx={{ width: 90, height: 90, mb: 2 }} />
         <Typography variant="h5" gutterBottom>
           {userData.name}
         </Typography>
@@ -53,7 +56,7 @@ const UserProfile = () => {
           {userData.location} • {userData.connections} connections
         </Typography>
         <Button variant="contained" color="primary" sx={{ mt: 1 }}>
-          Assessment Results
+          Connect
         </Button>
       </Box>
 
@@ -93,11 +96,27 @@ const UserProfile = () => {
           Skills
         </Typography>
         <Stack direction="row" flexWrap="wrap" gap={1}>
-          {userData.skills.map((skill) => (
-            <Chip key={skill.id} label={skill.name} variant="outlined" color="primary" />
+          {userData.skills.map((skill, index) => (
+            <Chip
+              key={skill} // Use the skill string as the unique key
+              label={skill} // Use the skill string as the label
+              variant="outlined"
+              sx={{
+                height: 'auto',
+                border: '1px solid', // Keep border size
+                borderColor: 'primary.main', // Use the primary color from the theme for border
+                borderRadius: '16px', // This gives the Chip an oval shape
+                padding: '6px 12px',
+                color: 'text.primary', // Use the text primary color from the theme
+                '& .MuiChip-label': {
+                  color: 'inherit', // Ensure label color is inherited so it's black
+                },
+              }}
+            />
           ))}
         </Stack>
       </Box>
+
     </Paper>
   );
 };

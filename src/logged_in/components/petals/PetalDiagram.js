@@ -104,7 +104,7 @@ const PetalDiagram = ({ userData }) => {
 
   return (
     <div>
-      <div style={{ textAlign: 'center', paddingTop: '120px' }}> {/* Added paddingBottom */}
+      <div style={{ textAlign: 'center', paddingTop: '10px' }}> {/* Added paddingBottom */}
         <h1 style={{ fontSize: '32px', fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' }}>
           Results of the Assessment
         </h1>
