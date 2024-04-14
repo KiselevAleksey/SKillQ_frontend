@@ -7,7 +7,7 @@ import NavBar from "./navigation/NavBar";
 import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 import persons from "../dummy_data/persons";
-import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
+// import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 
 const styles = (theme) => ({
   main: {
@@ -319,11 +319,11 @@ function Main(props) {
 
   return (
     <Fragment>
-      <LazyLoadAddBalanceDialog
+      {/* <LazyLoadAddBalanceDialog
         open={isAddBalanceDialogOpen}
         onClose={closeAddBalanceDialog}
         onSuccess={onPaymentSuccess}
-      />
+      /> */}
       <NavBar
         selectedTab={selectedTab}
         messages={messages}

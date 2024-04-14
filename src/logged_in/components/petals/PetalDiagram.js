@@ -109,7 +109,7 @@ const PetalDiagram = ({ userData }) => {
           Results of the Assessment
         </h1>
       </div>
-      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}> {/* Centered flex container */}
+      <div style={{ display: 'flex',  alignItems: 'center', justifyContent: 'center' }}> {/* Centered flex container */}
         <div style={{ flexGrow: selectedPetal ? 0.5 : 1, display: 'flex', justifyContent: 'center' }}> {/* Adjusted flexGrow */}
           <svg
             width={width}

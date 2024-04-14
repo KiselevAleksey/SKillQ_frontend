@@ -2,6 +2,8 @@ import React, { Fragment, useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { useHistory } from 'react-router-dom';
+import { auth } from '../../../shared/firebase/firebase';
 import {
   AppBar,
   Toolbar,
@@ -30,6 +32,8 @@ import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { actionTypes } from '../../../reducer';
+import { useStateValue } from '../../../StateProvider'; 
 
 const styles = (theme) => ({
   appBar: {
@@ -133,6 +137,8 @@ function NavBar(props) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const isWidthUpSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const history = useHistory();
+  const [{ user }, dispatch] = useStateValue(); // Make sure useStateValue is correctly imported
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -149,6 +155,21 @@ function NavBar(props) {
   const closeDrawer = useCallback(() => {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: null,
+      });
+      // You can clear any other state or localStorage here if necessary
+      history.push('/login'); // Redirect to login page after logout
+    } catch (error) {
+      // Handle errors here, such as showing a notification to the user
+      console.error("Logout failed: ", error);
+    }
+  };
 
   const menuItems = [
     {
@@ -218,6 +239,7 @@ function NavBar(props) {
     {
       link: "/",
       name: "Logout",
+      onClick: handleLogout, // Call the logout function here
       icon: {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -250,7 +272,7 @@ function NavBar(props) {
                 display="inline"
                 color="primary"
               >
-                Wa
+                Skill
               </Typography>
               <Typography
                 variant="h4"
@@ -258,7 +280,7 @@ function NavBar(props) {
                 display="inline"
                 color="secondary"
               >
-                Ver
+                Q
               </Typography>
             </Hidden>
           </Box>
@@ -268,14 +290,14 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            {isWidthUpSm && (
+            {/* {isWidthUpSm && (
               <Box mr={3}>
                 <Balance
                   balance={2573}
                   openAddBalanceDialog={openAddBalanceDialog}
                 />
               </Box>
-            )}
+            )} */}
             <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters

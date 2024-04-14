@@ -2,41 +2,39 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   header: {
-      textAlign: 'center',
-      padding: '10px 0',
-      fontSize: '1.2rem',
-      color: '#263238', // Dark text for the header
-      fontWeight: 'bold',
-      backgroundColor: '#ECEFF1', // Light grey background
+    textAlign: 'center',
+    padding: theme.spacing(1, 0),
+    fontSize: '1.2rem',
+    color: '#FFFFFF', // Set text color to white
+    fontWeight: 'bold',
+    backgroundColor: '#b3294e', // This maroon-ish color matches the header in the image
   },
   tabsFooter: {
     textAlign: 'center',
-    padding: '10px 0',
+    padding: theme.spacing(1, 0),
     fontSize: '1.1rem',
-    color: '#263238',
+    color: '#FFFFFF', // Set text color to white for the footer as well
   },
-  tabsHeader:{
-    paddingLeft: theme.spacing(2), 
-    },
+  tabsHeader: {
+    paddingLeft: theme.spacing(2),
+    backgroundColor: '#b3294e', // Set the background color for the header to match the image
+    color: '#FFFFFF', // Set the text color to white
+  },
   tabsContainer: {
     display: 'flex',
     flexDirection: 'row',
     height: '100vh',
     width: '100vw',
-    backgroundColor: '#ECEFF1',
-    color: '#37474F',
+    backgroundColor: '#ECEFF1', // Assuming the rest of the background remains light grey
+    color: '#37474F', // Assuming the rest of the text color remains a slate color
     fontFamily: theme.typography.fontFamily,
     margin: 0,
     padding: 0,
     overflow: 'hidden',
   },
-
   tabListContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between', // Aligns header at top, footer at bottom
-    backgroundColor: '#546E7A', // Background color for the entire sidebar container
-    color: '#CFD8DC', // Text color for tabs
+    backgroundColor: '#546E7A', // Assuming the sidebar background color remains the same
+    color: '#CFD8DC', // Assuming the sidebar text color remains the same
   },
   tabList: {
     // marginTop: '40px',

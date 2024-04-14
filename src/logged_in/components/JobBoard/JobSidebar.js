@@ -43,7 +43,7 @@ const JobSidebar = () => {
     <div style={sidebarStyle}>
       {/* Link to "Post a Job", styled as a button */}
       <Link to="/post-job" style={postJobButtonStyle}>
-        Be the best candidate
+        Compare your skills with others
       </Link>
       {/* Navigation Links */}
       <Link to="/my-jobs" style={linkStyle} activeStyle={activeLinkStyle}>
