@@ -5,6 +5,11 @@ import PropsRoute from "../../shared/components/PropsRoute";
 import Candidates from "./candidates/Candidates";
 import AssessmentPage from "./assessment/AssessmentPage";
 import HR from "./HR/HR";
+import FreelancerSignup from "./signup/FreelancerSignup/FreelancerSignup";
+import Signup from "./signup/Signup";
+import Login from "./login/Login";
+
+
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
 function Routing(props) {
@@ -28,6 +33,21 @@ function Routing(props) {
         exact
         path="/assessment"
         component={AssessmentPage}
+      />
+      <PropsRoute
+        exact
+        path="/register"
+        component={FreelancerSignup}
+      />
+      <PropsRoute
+        exact
+        path="/login"
+        component={Login}
+      />
+      <PropsRoute
+        exact
+        path="/signup"
+        component={Signup}
       />
     </Switch>
   );

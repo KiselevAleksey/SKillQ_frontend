@@ -5,7 +5,6 @@ import { AppBar, Toolbar, Typography, Button, Hidden, IconButton } from "@mui/ma
 import withStyles from '@mui/styles/withStyles';
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import BookIcon from "@mui/icons-material/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
@@ -30,14 +29,15 @@ const styles = theme => ({
   },
   noDecoration: {
     textDecoration: "none !important"
-  }
+  },
+  underline: {
+    textDecoration: 'underline',
+  },
 });
 
 function NavBar(props) {
   const {
     classes,
-    openRegisterDialog,
-    openLoginDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
     mobileDrawerOpen,
@@ -46,22 +46,17 @@ function NavBar(props) {
   const menuItems = [
     {
       link: "/",
-      name: "For Candidates",
+      name: "For Talents",
       icon: <HomeIcon className="text-white" />
     },
     {
       link: "/HR",
-      name: "For HR",
+      name: "For HR and Hiring Managers",
       icon: <BookIcon className="text-white" />
     },
     {
-      name: "Register",
-      onClick: openRegisterDialog,
-      icon: <HowToRegIcon className="text-white" />
-    },
-    {
+      link: "/Login",
       name: "Login",
-      onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />
     }
   ];
@@ -101,34 +96,25 @@ function NavBar(props) {
             </Hidden>
             <Hidden mdDown>
               {menuItems.map(element => {
-                if (element.link) {
-                  return (
-                    <Link
-                      key={element.name}
-                      to={element.link}
-                      className={classes.noDecoration}
-                      onClick={handleMobileDrawerClose}
-                    >
-                      <Button
-                        color="secondary"
-                        size="large"
-                        classes={{ text: classes.menuButtonText }}
-                      >
-                        {element.name}
-                      </Button>
-                    </Link>
-                  );
-                }
+                const isSelected = selectedTab === element.name;
                 return (
-                  <Button
-                    color="secondary"
-                    size="large"
-                    onClick={element.onClick}
-                    classes={{ text: classes.menuButtonText }}
+                  <Link
                     key={element.name}
+                    to={element.link}
+                    className={classes.noDecoration}
+                    onClick={() => {
+                      handleMobileDrawerClose();
+                      props.setSelectedTab(element.name); // Call the function from props
+                    }}
                   >
-                    {element.name}
-                  </Button>
+                    <Button
+                      color="secondary"
+                      size="large"
+                      classes={{ text: isSelected ? `${classes.menuButtonText} ${classes.underline}` : classes.menuButtonText }}
+                    >
+                      {element.name}
+                    </Button>
+                  </Link>
                 );
               })}
             </Hidden>
@@ -153,7 +139,8 @@ NavBar.propTypes = {
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
   openRegisterDialog: PropTypes.func.isRequired,
-  openLoginDialog: PropTypes.func.isRequired
+  openLoginDialog: PropTypes.func.isRequired,
+  setSelectedTab: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(memo(NavBar));

@@ -7,7 +7,6 @@ import Footer from "./footer/Footer";
 import "aos/dist/aos.css";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
-import DialogSelector from "./register_login/DialogSelector";
 import Routing from "./Routing";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 
@@ -24,15 +23,14 @@ function Main(props) {
   const { classes } = props;
   const [selectedTab, setSelectedTab] = useState(null);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
-  const [blogPosts, setBlogPosts] = useState([]);
-  const [dialogOpen, setDialogOpen] = useState(null);
+  const [blogPosts, setBlogPosts] = useState([]); // Assuming you are fetching blog posts
   const [isCookieRulesDialogOpen, setIsCookieRulesDialogOpen] = useState(false);
 
   const selectHome = useCallback(() => {
     smoothScrollTop();
     document.title =
       "SkillQ - AI-based Career Pathing & Skill Assessment";
-    setSelectedTab("For Candidates");
+    setSelectedTab("For Talents");
   }, [setSelectedTab]);
 
   const selectBlog = useCallback(() => {
@@ -41,23 +39,10 @@ function Main(props) {
     setSelectedTab("For HR");
   }, [setSelectedTab]);
 
-  const openLoginDialog = useCallback(() => {
-    setDialogOpen("login");
-    setIsMobileDrawerOpen(false);
-  }, [setDialogOpen, setIsMobileDrawerOpen]);
-
-  const closeDialog = useCallback(() => {
-    setDialogOpen(null);
-  }, [setDialogOpen]);
-
-  const openRegisterDialog = useCallback(() => {
-    setDialogOpen("register");
-    setIsMobileDrawerOpen(false);
-  }, [setDialogOpen, setIsMobileDrawerOpen]);
-
-  const openTermsDialog = useCallback(() => {
-    setDialogOpen("termsOfService");
-  }, [setDialogOpen]);
+  const selectTab = useCallback((tab) => {
+    setSelectedTab(tab);
+    // Additional logic if needed
+  }, [setSelectedTab]);
 
   const handleMobileDrawerOpen = useCallback(() => {
     setIsMobileDrawerOpen(true);
@@ -66,10 +51,6 @@ function Main(props) {
   const handleMobileDrawerClose = useCallback(() => {
     setIsMobileDrawerOpen(false);
   }, [setIsMobileDrawerOpen]);
-
-  const openChangePasswordDialog = useCallback(() => {
-    setDialogOpen("changePassword");
-  }, [setDialogOpen]);
 
   const handleCookieRulesDialogOpen = useCallback(() => {
     setIsCookieRulesDialogOpen(true);
@@ -86,23 +67,13 @@ function Main(props) {
           handleCookieRulesDialogOpen={handleCookieRulesDialogOpen}
         />
       )}
-      <DialogSelector
-        openLoginDialog={openLoginDialog}
-        dialogOpen={dialogOpen}
-        onClose={closeDialog}
-        openTermsDialog={openTermsDialog}
-        openRegisterDialog={openRegisterDialog}
-        openChangePasswordDialog={openChangePasswordDialog}
-      />
       <CookieRulesDialog
         open={isCookieRulesDialogOpen}
         onClose={handleCookieRulesDialogClose}
       />
       <NavBar
         selectedTab={selectedTab}
-        selectTab={setSelectedTab}
-        openLoginDialog={openLoginDialog}
-        openRegisterDialog={openRegisterDialog}
+        setSelectedTab={setSelectedTab}
         mobileDrawerOpen={isMobileDrawerOpen}
         handleMobileDrawerOpen={handleMobileDrawerOpen}
         handleMobileDrawerClose={handleMobileDrawerClose}
@@ -116,6 +87,7 @@ function Main(props) {
     </div>
   );
 }
+
 
 Main.propTypes = {
   classes: PropTypes.object.isRequired,

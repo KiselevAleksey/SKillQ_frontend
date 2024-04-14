@@ -2,6 +2,8 @@ import React, { Fragment, useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { useHistory } from 'react-router-dom';
+import { auth } from '../../../shared/firebase/firebase';
 import {
   AppBar,
   Toolbar,
@@ -18,9 +20,10 @@ import {
   Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ImageIcon from "@mui/icons-material/Image";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import PersonIcon from "@mui/icons-material/Person";
+import BubbleChartIcon from "@mui/icons-material/BubbleChart";
+import TabIcon from "@mui/icons-material/Tab";
+import WorkIcon from "@mui/icons-material/Work";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import MenuIcon from "@mui/icons-material/Menu";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
@@ -29,6 +32,8 @@ import SideDrawer from "./SideDrawer";
 import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { actionTypes } from '../../../reducer';
+import { useStateValue } from '../../../StateProvider'; 
 
 const styles = (theme) => ({
   appBar: {
@@ -132,6 +137,8 @@ function NavBar(props) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const isWidthUpSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const history = useHistory();
+  const [{ user }, dispatch] = useStateValue(); // Make sure useStateValue is correctly imported
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -149,60 +156,90 @@ function NavBar(props) {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: null,
+      });
+      // You can clear any other state or localStorage here if necessary
+      history.push('/login'); // Redirect to login page after logout
+    } catch (error) {
+      // Handle errors here, such as showing a notification to the user
+      console.error("Logout failed: ", error);
+    }
+  };
+
   const menuItems = [
     {
-      link: "/c/dashboard",
-      name: "Dashboard",
+      link: "/c/user-profile",
+      name: "User Profile",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <DashboardIcon
+          <PersonIcon
             className={
-              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
+              selectedTab === "User Profile" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <DashboardIcon className="text-white" />,
+        mobile: <PersonIcon className="text-white" />,
       },
     },
     {
-      link: "/c/posts",
-      name: "Posts",
+      link: "/c/diagram",
+      name: "Assessment results",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <ImageIcon
+          <BubbleChartIcon
             className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+              selectedTab === "Assessment results" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <ImageIcon className="text-white" />,
+        mobile: <BubbleChartIcon className="text-white" />,
       },
     },
     {
-      link: "/c/subscription",
-      name: "Subscription",
+      link: "/c/tabs",
+      name: "My expertise",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <AccountBalanceIcon
+          <TabIcon
             className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
+              selectedTab === "My expertise" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <AccountBalanceIcon className="text-white" />,
+        mobile: <TabIcon className="text-white" />,
+      },
+    },
+    {
+      link: "/c/job-board",
+      name: "Job Board",
+      onClick: closeMobileDrawer,
+      icon: {
+        desktop: (
+          <WorkIcon
+            className={
+              selectedTab === "Job Board" ? classes.textPrimary : "text-white"
+            }
+            fontSize="small"
+          />
+        ),
+        mobile: <WorkIcon className="text-white" />,
       },
     },
     {
       link: "/",
       name: "Logout",
+      onClick: handleLogout, // Call the logout function here
       icon: {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -235,7 +272,7 @@ function NavBar(props) {
                 display="inline"
                 color="primary"
               >
-                Wa
+                Skill
               </Typography>
               <Typography
                 variant="h4"
@@ -243,7 +280,7 @@ function NavBar(props) {
                 display="inline"
                 color="secondary"
               >
-                Ver
+                Q
               </Typography>
             </Hidden>
           </Box>
@@ -253,14 +290,14 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            {isWidthUpSm && (
+            {/* {isWidthUpSm && (
               <Box mr={3}>
                 <Balance
                   balance={2573}
                   openAddBalanceDialog={openAddBalanceDialog}
                 />
               </Box>
-            )}
+            )} */}
             <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters
@@ -268,14 +305,14 @@ function NavBar(props) {
             >
               <Avatar
                 alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
+                src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg`}
                 className={classNames(classes.accountAvatar)}
               />
               {isWidthUpSm && (
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">Yulia Fomina</Typography>
                   }
                 />
               )}
