@@ -86,16 +86,16 @@ function VideoSection({ classes }) {
       <Grid item xs={12} md={8}>
         <Card className={classes.card}>
           <div className={classes.playerWrapper}>
-            <ReactPlayer
-              url="Welcome to the Team.mp4"
-              playing={playVideo}
-              controls={true}
-              className={classes.reactPlayer}
-              width="100%"
-              height="100%"
-              onPlay={togglePlayVideo}
-              onPause={togglePlayVideo}
-            />
+          <ReactPlayer
+            url={`${process.env.PUBLIC_URL}/Welcome to the Team.mp4`}
+            playing={playVideo}
+            controls={true}
+            className={classes.reactPlayer}
+            width="100%"
+            height="100%"
+            onPlay={togglePlayVideo}
+            onPause={togglePlayVideo}
+          />
             {!playVideo && (
               <Typography variant="h4" className={classes.overlayText}>
                 What is SkillQ for Recruiter?

@@ -44,17 +44,17 @@ const features = [
   {
     title: 'Objective evaluation of your skills',
     description: 'Show recruiters your best self in a stress-free environment, right in front of your laptop',
-    icon: '/icons/unemployed.png', // Replace with your actual image path
+    icon: `${process.env.PUBLIC_URL}/icons/unemployed.png`,
   },
   {
     title: 'Customized job board',
     description: 'Forget about hours spent to find job postings that fit your knowledge and career trajectory - we are here to do it for you',
-    icon: 'icons/requirements.png', // Replace with your actual image path
+    icon: `${process.env.PUBLIC_URL}/icons/requirements.png`,
   },
   {
     title: 'Customized learning experience',
     description: 'SkillQ is the best platform available to track your skill level over time and give you a next step learning recommendation',
-    icon: '/icons/knowledge.png', // Replace with your actual image path
+    icon: `${process.env.PUBLIC_URL}/icons/knowledge.png`,
   },
 ];
 

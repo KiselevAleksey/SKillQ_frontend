@@ -44,19 +44,20 @@ const features = [
   {
     title: 'Quality candidates only',
     description: 'SkillQ ensures you receive only top-quality candidates by filtering out irrelevant applications',
-    icon: '/icons/unemployed.png', // Replace with your actual image path
+    icon: `${process.env.PUBLIC_URL}/icons/high-performance.png`,
   },
   {
     title: 'Skill level transparency',
     description: "SkillQ provides objective assessment of candidates' skills to see if they fit the job requirement",
-    icon: 'icons/requirements.png', // Replace with your actual image path
+    icon: `${process.env.PUBLIC_URL}/icons/competence.png`,
   },
   {
     title: 'Pay for Performance',
     description: 'SkillQ only charges when you find the right talent to proceed with the interview',
-    icon: '/icons/knowledge.png', // Replace with your actual image path
+    icon: `${process.env.PUBLIC_URL}/icons/success.png`,
   },
 ];
+
 
 const Feature = ({ title, description, icon }) => {
   const classes = useStyles();
