@@ -1,36 +1,38 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
-import withStyles from '@mui/styles/withStyles';
+import { useTheme, useMediaQuery } from '@mui/material'; // Corrected the imports here
+import { withStyles } from '@mui/styles'; // Correct import for withStyles from @mui/styles
 import UserProfile from "./UserProfile/UserProfile";
 import PetalDiagram from "./petals/PetalDiagram";
+import MobilePetalDiagram from "./petalsMobile/MobilePetalDiagram";
 import TabsComponent from "./TabbedInterface/components/TabsComponent";
 import JobBoard from "./JobBoard/JobBoard";
 import PropsRoute from "../../shared/components/PropsRoute";
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
-  const styles = (theme) => ({
-    wrapper: {
-      width: '100%', // Set the width to be 100% of the viewport
-      margin: 0, // Remove all margins
-      [theme.breakpoints.up("xs")]: {
-        marginTop: theme.spacing(0), // Set the top margin to 0
-        marginBottom: theme.spacing(0), // Set the bottom margin to 0
-      },
-      [theme.breakpoints.up("sm")]: {
-        marginTop: theme.spacing(0), // Keep top margin at 0
-        marginBottom: theme.spacing(0), // Keep bottom margin at 0
-      },
-      [theme.breakpoints.up("md")]: {
-        marginTop: theme.spacing(0), // Keep top margin at 0
-        marginBottom: theme.spacing(0), // Keep bottom margin at 0
-      },
-      [theme.breakpoints.up("lg")]: {
-        marginTop: theme.spacing(0), // Keep top margin at 0
-        marginBottom: theme.spacing(0), // Keep bottom margin at 0
-      },
+const styles = (theme) => ({
+  wrapper: {
+    width: '100%', // Set the width to be 100% of the viewport
+    margin: 0, // Remove all margins
+    [theme.breakpoints.up("xs")]: {
+      marginTop: theme.spacing(0), // Set the top margin to 0
+      marginBottom: theme.spacing(0), // Set the bottom margin to 0
     },
-  });
+    [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(0), // Keep top margin at 0
+      marginBottom: theme.spacing(0), // Keep bottom margin at 0
+    },
+    [theme.breakpoints.up("md")]: {
+      marginTop: theme.spacing(0), // Keep top margin at 0
+      marginBottom: theme.spacing(0), // Keep bottom margin at 0
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginTop: theme.spacing(0), // Keep top margin at 0
+      marginBottom: theme.spacing(0), // Keep bottom margin at 0
+    },
+  },
+});
 
 function Routing(props) {
   const {
@@ -46,6 +48,10 @@ function Routing(props) {
     setPosts,
   } = props;
   useLocationBlocker();
+  
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <div className={classes.wrapper}>
       <Switch>
@@ -58,7 +64,7 @@ function Routing(props) {
         />
         <PropsRoute
           path="/c/diagram"
-          component={PetalDiagram}
+          component={isMobile ? MobilePetalDiagram : PetalDiagram}
           userData={{ photoUrl: `${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg` }}
         />
         <PropsRoute

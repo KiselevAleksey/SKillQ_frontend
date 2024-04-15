@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'; // Import useHistory instead of useNavigate
-import { Container, Paper, Typography, Button, Link } from '@mui/material';
+import { Container, Paper, Typography, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,7 @@ function Signup() {
             className={classes.submit}
             onClick={() => history.push(`/Register`)}
           >
-            Create a Talant Profile
+            Create a Talent Profile
           </Button>
           <Button
             fullWidth
@@ -59,7 +59,7 @@ function Signup() {
             className={classes.submit}
             onClick={() => history.push(`/Register`)}
           >
-            Find a Talant
+            Find the Talent
           </Button>
         </div>
       <a href="/login" className="forgot-password-link" style={{ textAlign: 'center', color: 'black'}}>Already have an account? Log in</a>

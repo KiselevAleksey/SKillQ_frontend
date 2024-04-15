@@ -83,7 +83,7 @@ const FeaturesSection = () => {
   return (
     <Container className={classes.root}>
       <Typography variant="h4" marginBottom={5} gutterBottom style={{ fontWeight: 'bold' }}>
-        SkillIQ at a glance
+        SkillQ at a glance
       </Typography>
       <Grid container spacing={4} className={classes.gridContainer}>
         {features.map((feature, index) => (

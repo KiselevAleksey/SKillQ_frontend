@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Allows authenticated users to upload to "test_uploads" directory
+    match /test_uploads/{fileName} {
+      allow read, write: if request.auth != null;
+    }
+    // You can add more paths with specific rules here
+  }
+}

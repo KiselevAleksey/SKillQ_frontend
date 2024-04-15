@@ -97,8 +97,8 @@ const AssessmentPopup = ({ onClose }) => {
     const randomQuestion2 = selectedLists.list2[Math.floor(Math.random() * selectedLists.list2.length)];
 
     setQuestions([
-      { videoSrc: 'video1.mp4', text: randomQuestion1 }, // Replace 'video1.mp4' with actual video if needed
-      { videoSrc: 'video2.mp4', text: randomQuestion2 }, // Replace 'video2.mp4' with actual video if needed
+      { videoSrc: `${process.env.PUBLIC_URL}/result_voice.mp4`, text: randomQuestion1 },
+      { videoSrc: `${process.env.PUBLIC_URL}/result_voice.mp4`, text: randomQuestion2 },
     ]);
     setIsCategorySelected(true);
   };
@@ -110,16 +110,18 @@ const AssessmentPopup = ({ onClose }) => {
     </IconButton>
       {!isCategorySelected ? (
         <CategorySelector
-          categories={['Category 1', 'Category 2', 'Category 3']}
+          categories={['Marketing', 'Strategy', 'Management']}
           onSubmit={handleCategorySubmit}
         />
       ) : (
         <>
           {!isVideoEnded && (
-            <VideoPlayer onVideoEnd={handleVideoEnd} src="intro_video.mp4" />
+            <VideoPlayer onVideoEnd={handleVideoEnd} src={`${process.env.PUBLIC_URL}/intro_video.mp4`} />
           )}
           {isVideoEnded && !userIsReady && (
-            <VideoEndButton onReady={handleUserReady} />
+            <VideoEndButton 
+            onReady={handleUserReady}
+            currentQuestionIndex={currentQuestionIndex}  />
           )}
           {userIsReady && (
             <SplitContainer

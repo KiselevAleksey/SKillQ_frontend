@@ -1,6 +1,6 @@
 // categoryQuestions.js
 const categoryQuestions = {
-    'Category 1': {
+    'Marketing': {
       list1: [
         'What is the capital of France?',
         'What is the tallest mountain in the world?',
@@ -12,7 +12,7 @@ const categoryQuestions = {
         // ...more questions for list2 in Category 1
       ],
     },
-    'Category 2': {
+    'Strategy': {
       list1: [
         'What is the chemical symbol for Gold?',
         'Who invented the lightbulb?',
@@ -24,7 +24,7 @@ const categoryQuestions = {
         // ...more questions for list2 in Category 2
       ],
     },
-    'Category 3': {
+    'Management': {
       list1: [
         'Who wrote "To be, or not to be"?',
         'Who is the main character in Hamlet?',

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Grid, Typography, Card, Button, Checkbox, Box } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -107,7 +107,7 @@ function HeadSection(props) {
                   component={Link}
                   to="/Register"
                 >
-                  Find the Talant
+                  Start now
                 </Button>
               </div>
             </Grid>

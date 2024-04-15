@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import HeadSection from "./HeadSection";
 import FeaturesSection from "./FeaturesSection";
 import VideoSection from "./VideoSection";
+import ImageSection from "./ImageSection";
 
 function Candidates(props) {
   const { selectHome } = props;
@@ -14,6 +15,7 @@ function Candidates(props) {
       <HeadSection />
       <FeaturesSection />
       <VideoSection />
+      <ImageSection />
     </Fragment>
   );
 }

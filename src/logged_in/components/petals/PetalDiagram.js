@@ -1,56 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Petal from './Petal';
 import Bubble from './Bubble';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Legend from './Legend'
+import Legend from './Legend';
 import petalData from './petalData';
 import Summary from './Summary';
 
-
 const PetalDiagram = ({ userData }) => {
-  const width = 500;
-  const height = 500;
+  // State for dimensions now holds more than just width and height
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    radius: 0, // Will be calculated
+    bubbleOffset: 0, // Will be calculated
+  });
+  const [selectedPetal, setSelectedPetal] = useState(null);
+
+  // Update dimensions based on window size
+  useEffect(() => {
+    const updateSize = () => {
+      // Use a smaller fraction of width for smaller screens
+      let sizeFactor = window.innerWidth < 600 ? 0.8 : 0.5;
+      let newWidth = Math.min(500, window.innerWidth * sizeFactor);
+      let newHeight = Math.min(500, window.innerHeight * sizeFactor);
+      setDimensions({
+        width: newWidth,
+        height: newHeight,
+        radius: Math.min(newWidth, newHeight) / 3,
+        bubbleOffset: newWidth / 10,
+      });
+    };
+
+    window.addEventListener('resize', updateSize);
+    updateSize(); // Initial size update
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  const { width, height, radius, bubbleOffset } = dimensions;
   const centerX = width / 2;
   const centerY = height / 2;
-  const radius = Math.min(width, height) / 3;
-  const [selectedPetal, setSelectedPetal] = useState(null);
 
   const handlePetalClick = (index) => {
     const petal = petalData[index];
-    
-    // Define the starting x and y positions for the first bubble
     const startX = centerX + 40 - petal.bubbles.length;
     const startY = centerY + 40 - petal.bubbles.length;
-  
-    // Define a horizontal offset for each subsequent bubble
     const xOffset = 150;
-  
-    // Find the lowest number in the current petal's bubbles
     const lowestNumber = Math.min(...petal.bubbles.map(bubble => bubble.number));
-  
-    // Set the position of each bubble and mark the bubble with the lowest number
-    const bubblePositions = petal.bubbles.map((bubble, i) => {
-      return {
-        x: - xOffset + i * xOffset,
-        y: startY,
-        isLowest: bubble.number === lowestNumber
-      };
-    });
-  
+    const bubblePositions = petal.bubbles.map((bubble, i) => ({
+      x: - xOffset + i * xOffset,
+      y: startY,
+      isLowest: bubble.number === lowestNumber
+    }));
     setSelectedPetal({
       ...petal,
       bubbles: petal.bubbles.map((bubble, i) => ({
         ...bubble,
         position: bubblePositions[i],
-        isLowest: bubblePositions[i].isLowest // Include the isLowest flag
+        isLowest: bubblePositions[i].isLowest
       })),
     });
-  
-    console.log(`Bubble positions for petal ${index}:`, bubblePositions);
   };
-  
+
   const petals = petalData.map((data, index) => {
-    const angle = (index * 2 * Math.PI) / petalData.length; // Calculate the angle for each petal
+    const angle = (index * 2 * Math.PI) / petalData.length;
     return (
       <Petal
         key={index}
@@ -66,90 +78,60 @@ const PetalDiagram = ({ userData }) => {
   });
 
   const bubbles = selectedPetal
-  ? selectedPetal.bubbles.map((bubble, index) => {
-      console.log(`Rendering bubble ${index} for selected petal:`, bubble);
-      return (
-        <Bubble
-          key={index}
-          name={bubble.name}
-          number={bubble.number}
-          position={bubble.position}
-          isLowest={bubble.isLowest}
-          courseLinks={bubble.courseLinks}
-        />
-      );
-    })
+  ? selectedPetal.bubbles.map((bubble, index) => (
+      <Bubble
+        key={index}
+        name={bubble.name}
+        number={bubble.number}
+        position={bubble.position}
+        isLowest={bubble.isLowest}
+        courseLinks={bubble.courseLinks}
+      />
+    ))
   : null;
 
-
-  const printImageCorners = () => {
-    const imageX = -radius * 0.5;
-    const imageY = -radius * 0.5;
-    const imageWidth = radius;
-    const imageHeight = radius;
-
-    const topLeft = { x: centerX + imageX, y: centerY + imageY };
-    const topRight = { x: centerX + imageX + imageWidth, y: centerY + imageY };
-    const bottomLeft = { x: centerX + imageX, y: centerY + imageY + imageHeight };
-    const bottomRight = { x: centerX + imageX + imageWidth, y: centerY + imageY + imageHeight };
-
-    console.log('Image corners:', { topLeft, topRight, bottomLeft, bottomRight });
-  };
-
-  // Call this function to log corners when component mounts
-  React.useEffect(() => {
-    printImageCorners();
-  }, []);
-
-
-  return (
-    <div>
-      <div style={{ textAlign: 'center', paddingTop: '10px' }}> {/* Added paddingBottom */}
-        <h1 style={{ fontSize: '32px', fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' }}>
-          Results of the Assessment
-        </h1>
+return (
+  <div style={{ textAlign: 'center', paddingTop: '10px' }}>
+    <h1 style={{ fontSize: '32px', fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', margin: '0 0 20px 0' }}>
+      Results of the Assessment
+    </h1>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ flexGrow: selectedPetal ? 0.5 : 1, display: 'flex', justifyContent: 'center', padding: '0 10px' }}>
+        <svg
+          width={width}
+          height={height}
+          viewBox={`0 0 ${width} ${height}`}
+          overflow="visible"
+        >
+          <g transform={`translate(${centerX}, ${centerY})`}>
+            {petals}
+            {userData.photoUrl ? (
+              <image
+                href={userData.photoUrl}
+                x={-radius * 0.5}
+                y={-radius * 0.5}
+                height={radius}
+                width={radius}
+                clipPath="url(#circleView)"
+              />
+            ) : (
+              <foreignObject x={-radius * 0.5} y={-radius * 0.5} width={radius} height={radius}>
+                <AccountCircleIcon style={{ width: '100%', height: '100%' }} />
+              </foreignObject>
+            )}
+            <clipPath id="circleView">
+              <circle cx={0} cy={0} r={radius * 0.5} />
+            </clipPath>
+            {bubbles}
+            <Legend />
+          </g>
+        </svg>
       </div>
-      <div style={{ display: 'flex',  alignItems: 'center', justifyContent: 'center' }}> {/* Centered flex container */}
-        <div style={{ flexGrow: selectedPetal ? 0.5 : 1, display: 'flex', justifyContent: 'center' }}> {/* Adjusted flexGrow */}
-          <svg
-            width={width}
-            height={height}
-            viewBox={`0 0 ${width} ${height}`}
-            overflow="visible"
-          >
-            <g transform={`translate(${centerX}, ${centerY})`}>
-              {petals}
-              {userData.photoUrl ? (
-                <image
-                  href={userData.photoUrl}
-                  x={-radius * 0.5}
-                  y={-radius * 0.5}
-                  height={radius}
-                  width={radius}
-                  clipPath="url(#circleView)"
-                />
-              ) : (
-                <foreignObject x={-radius * 0.5} y={-radius * 0.5} width={radius} height={radius}>
-                  <AccountCircleIcon
-                    style={{ 
-                      width: '100%', 
-                      height: '100%' 
-                    }}
-                  />
-                </foreignObject>
-              )}
-              <clipPath id="circleView">
-                <circle cx={0} cy={0} r={radius * 0.5} />
-              </clipPath>
-              {bubbles}
-              <Legend />
-            </g>
-          </svg>
-        </div>
-        {selectedPetal && <Summary petal={selectedPetal} />}
-      </div>
+      {selectedPetal && <Summary petal={selectedPetal} style={{ margin: '0 10px' }} />}
     </div>
-  );
+  </div>
+);
 };
+
 
 export default PetalDiagram;

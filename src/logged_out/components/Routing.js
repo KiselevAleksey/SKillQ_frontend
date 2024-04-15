@@ -8,6 +8,7 @@ import HR from "./HR/HR";
 import FreelancerSignup from "./signup/FreelancerSignup/FreelancerSignup";
 import Signup from "./signup/Signup";
 import Login from "./login/Login";
+import TestUpload from "./test/TestUpload";
 
 
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
@@ -48,6 +49,11 @@ function Routing(props) {
         exact
         path="/signup"
         component={Signup}
+      />
+      <PropsRoute
+        exact
+        path="/TestUpload"
+        component={TestUpload}
       />
     </Switch>
   );
