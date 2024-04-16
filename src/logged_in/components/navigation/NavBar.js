@@ -303,18 +303,22 @@ function NavBar(props) {
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
+            <Link to="/c/user-profile" style={{ textDecoration: 'none' }}>
               <Avatar
                 alt="profile picture"
                 src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg`}
                 className={classNames(classes.accountAvatar)}
               />
+            </Link>
               {isWidthUpSm && (
+                <Link to="/c/user-profile" style={{ textDecoration: 'none' }}>
                 <ListItemText
                   className={classes.username}
                   primary={
                     <Typography color="textPrimary">Yulia Fomina</Typography>
                   }
                 />
+              </Link>
               )}
             </ListItem>
           </Box>

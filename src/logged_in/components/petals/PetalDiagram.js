@@ -10,8 +10,6 @@ import Summary from './Summary';
 const petalDiagramContainerStyle = {
   display: 'flex',
   justifyContent: 'center',
-  padding: '20px',
-  gap: '20px',
   backgroundColor: '#fff',
   borderRadius: '8px',
   boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
@@ -26,18 +24,6 @@ const PetalDiagram = ({ userData }) => {
     bubbleOffset: 0,
   });
   const [selectedPetal, setSelectedPetal] = useState(null);
-  
-    const calculateViewBox = () => {
-    // Calculate the maximum bubble position extents
-    const maxBubbleOffset = Math.max(...petalData.flatMap(petal => petal.bubbles.map(bubble => Math.abs(bubble.position.x))));
-    const maxBubbleRadius = bubbleRadius * 2; // Since bubbles can extend to both sides
-    const viewBoxWidth = width + maxBubbleOffset + maxBubbleRadius;
-    const viewBoxHeight = height + maxBubbleRadius; // Assuming vertical extent is covered by height
-    const minX = -(viewBoxWidth / 2);
-    const minY = -(viewBoxHeight / 2);
-
-    return `${minX} ${minY} ${viewBoxWidth} ${viewBoxHeight}`;
-  };
 
   // Ensure the sizes are set properly before the first render
   useEffect(() => {
@@ -135,12 +121,12 @@ const PetalDiagram = ({ userData }) => {
 
   return (
     <div style={petalDiagramContainerStyle}>
-      <div style={{ textAlign: 'center', paddingTop: '10px' }}>
-        <h1 style={{ fontSize: '32px', fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', margin: '20px 0 20px 0' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontSize: '32px', fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'}}>
           Results of the Assessment
         </h1>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ flexGrow: selectedPetal ? 0.5 : 1, display: 'flex', justifyContent: 'center', padding: '0 10px' }}>
+          <div style={{ flexGrow: selectedPetal ? 0.5 : 1, display: 'flex', justifyContent: 'center' }}>
             <svg
               width={width}
               height={height}
