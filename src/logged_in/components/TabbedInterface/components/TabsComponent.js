@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTheme, useMediaQuery } from '@mui/material';
 import Tab from './Tab';
 import SkillContent from './SkillContent';
 import useStyles from '../styles/useStyles';
@@ -82,53 +83,54 @@ const skillDetails = {
 };
 
 
+
 const TabsComponent = () => {
-    const classes = useStyles();
-    // Initialize with the first three categories
-    const [selectedSkills, setSelectedSkills] = useState(Object.keys(skillDetails).slice(0, 3));
-    // Set the first skill as the active tab by default
-    const [activeTab, setActiveTab] = useState(selectedSkills[0]);
-  
-    const handleTabClick = (skill) => {
-      if (selectedSkills.includes(skill)) {
-        setActiveTab(skill);
-      } else {
-        console.error("The skill clicked is not in the current selected skills list.");
-      }
-    };
-  
-    return (
-      <div className={classes.tabsContainer}>
-        <div className={classes.tabListContainer}>
-          <h2 className={classes.tabsHeader}>The list of Expertise categories</h2>
-          <div className={classes.tabList}>
-            {selectedSkills.map((skill) => (
-              <Tab
-                key={skill}
-                title={skillDetails[skill].title}
-                active={activeTab === skill}
-                onClick={() => handleTabClick(skill)}
-              />
-            ))}
-          </div>
-          <AddRemoveCategories
-            skillDetails={skillDetails}
-            selectedSkills={selectedSkills}
-            setSelectedSkills={setSelectedSkills}
-          />
-        </div>
-        <div className={classes.tabContent}>
-          {activeTab && (
-            <SkillContent
-              title={skillDetails[activeTab].title}
-              description={skillDetails[activeTab].description}
-              subSkills={skillDetails[activeTab].subSkills}
-            />
-          )}
-        </div>
-      </div>
-    );
+  const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const [selectedSkills, setSelectedSkills] = useState(Object.keys(skillDetails).slice(0, 3));
+  const [activeTab, setActiveTab] = useState(selectedSkills[0]);
+
+  const handleTabClick = (skill) => {
+    if (selectedSkills.includes(skill)) {
+      setActiveTab(skill);
+    } else {
+      console.error("The skill clicked is not in the current selected skills list.");
+    }
   };
-  
-  export default TabsComponent;
-  
+
+  return (
+    <div className={classes.tabsContainer}>
+      <div className={classes.tabListContainer}>
+        <h2 className={classes.tabsHeader}>The list of Expertise categories</h2>
+        <div className={classes.tabList}>
+          {selectedSkills.map((skill) => (
+            <Tab
+              key={skill}
+              title={skillDetails[skill].title}
+              active={activeTab === skill}
+              onClick={() => handleTabClick(skill)}
+            />
+          ))}
+        </div>
+        <AddRemoveCategories
+          skillDetails={skillDetails}
+          selectedSkills={selectedSkills}
+          setSelectedSkills={setSelectedSkills}
+        />
+      </div>
+      <div className={classes.tabContent}>
+        {activeTab && (
+          <SkillContent
+            title={skillDetails[activeTab].title}
+            description={skillDetails[activeTab].description}
+            subSkills={skillDetails[activeTab].subSkills}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default TabsComponent;

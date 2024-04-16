@@ -24,13 +24,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     height: '100vh',
-    width: '100vw',
-    backgroundColor: '#ECEFF1', // Assuming the rest of the background remains light grey
-    color: '#37474F', // Assuming the rest of the text color remains a slate color
+    width: `calc(100vw - ${theme.spacing(9)})`, // Adjust width based on the sidebar
+    backgroundColor: '#ECEFF1',
+    color: '#37474F',
     fontFamily: theme.typography.fontFamily,
     margin: 0,
     padding: 0,
     overflow: 'hidden',
+    transition: 'width 0.3s', // If sidebar is toggleable, animate width change
   },
   tabListContainer: {
     backgroundColor: '#546E7A', // Assuming the sidebar background color remains the same
@@ -98,10 +99,9 @@ const useStyles = makeStyles((theme) => ({
     '&:active': {
       backgroundColor: '#B0BEC5', // Same color on active/click
     },
-    // Add a class for when the oval is selected
-    '&.selected': {
-        backgroundColor: '#f7dbe7', // Metallic cold pink (more pinky than grey)
-    },
+  },
+  selected: {
+    backgroundColor: '#f7dbe7', // Example pinkish color for selected subSkills
   },
 }));
 
