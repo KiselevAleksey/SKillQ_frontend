@@ -4,27 +4,27 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
 
-// Updated to use a function for dynamic styling based on props
+
 const useStyles = makeStyles({
-    bubble: (props) => ({
-      fill: props.isLowest ? 'rgba(205, 92, 92, 0.6)' : 'rgba(60, 179, 113, 0.6)', // Updated colors for a more metallic look
-      stroke: '#708090', // Slate grey stroke
-      strokeWidth: 2,
-      cursor: 'pointer',
-      '&:hover': {
-        stroke: '#2F4F4F', // Darker slate grey on hover
-        strokeWidth: 3,
-      },
-    }),
-    bubbleText: {
-      fill: '#000',
-      textAnchor: 'middle',
-      dominantBaseline: 'middle',
-      fontSize: '18px',
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      pointerEvents: 'none',
+  bubble: (props) => ({
+    fill: props.isLowest ? 'rgba(255, 105, 97, 0.6)' : 'rgba(102, 187, 106, 0.6)', // Soft red for negative, vibrant green for positive
+    stroke: '#546E7A', // Cooler grey stroke for a more modern look
+    strokeWidth: 2,
+    cursor: 'pointer',
+    '&:hover': {
+      stroke: '#37474F', // Darker grey on hover
+      strokeWidth: 3,
     },
-  });
+  }),
+  bubbleText: {
+    fill: '#000',
+    textAnchor: 'middle',
+    dominantBaseline: 'middle',
+    fontSize: '18px',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    pointerEvents: 'none',
+  },
+});
 
   const useDropdownStyles = makeStyles({
     menuItem: {

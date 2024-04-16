@@ -2,7 +2,7 @@ const petalData = [
     {
       label: `Expertise ${Math.round(0.836 * 100)}%`,
       size: 8 * Math.round(0.836 * 100) / 100,
-      color: 'rgba(0, 0, 255, 0.4)', // Blue
+      color: 'rgba(79, 195, 247, 0.5)', 
       bubbles: [
         {
           name: 'SMM',
@@ -39,7 +39,7 @@ const petalData = [
     {
       label: `Presentation ${Math.round(0.66 * 100)}%`,
       size: 8 * Math.round(0.66 * 100) / 100,
-      color: 'rgba(128, 0, 128, 0.5)', // Purple
+      color: 'rgba(255, 105, 97, 0.2)',
       bubbles: [
         {
           name: 'Structuring',
@@ -76,7 +76,7 @@ const petalData = [
     {
       label: `Problem Solving ${Math.round(0.483 * 100)}%`,
       size: 8 * Math.round(0.483 * 100) / 100,
-      color: 'rgba(255, 20, 147, 0.2)', // Pink
+      color: 'rgba(255, 193, 7, 0.4)', 
       bubbles: [
         {
           name: 'Quickness',

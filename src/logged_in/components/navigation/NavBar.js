@@ -266,6 +266,7 @@ function NavBar(props) {
               </Box>
             </Hidden>
             <Hidden smDown>
+            <Link to="/c/user-profile/" className={classes.link}>
               <Typography
                 variant="h4"
                 className={classes.brandText}
@@ -282,7 +283,8 @@ function NavBar(props) {
               >
                 Q
               </Typography>
-            </Hidden>
+            </Link>
+          </Hidden>
           </Box>
           <Box
             display="flex"
@@ -290,14 +292,6 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            {/* {isWidthUpSm && (
-              <Box mr={3}>
-                <Balance
-                  balance={2573}
-                  openAddBalanceDialog={openAddBalanceDialog}
-                />
-              </Box>
-            )} */}
             <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters
