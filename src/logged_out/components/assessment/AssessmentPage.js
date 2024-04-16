@@ -148,14 +148,15 @@ const AssessmentPage = () => {
           <Typography variant="caption" display="block" color="error" className={classes.termsText}>
             Please accept terms & conditions and data processing agreement to proceed
           </Typography>
-          <Button
-            variant="contained"
-            className={classes.startButton}
-            endIcon={<ArrowForwardIosIcon />}
-            onClick={handleStartAssessment}
-          >
-            Start assessment
-          </Button>
+            <Button
+              variant="contained"
+              className={classes.startButton}
+              endIcon={<ArrowForwardIosIcon />}
+              onClick={handleStartAssessment}
+              disabled={!isTermsAccepted || !isDataProcessingAccepted}
+            >
+              Start assessment
+            </Button>
         </Box>
       </Container>
 
