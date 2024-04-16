@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import JobCard from './JobCard'; // Make sure the path to JobCard.js is correct
 
 // You can replace this mock data with actual job data fetched from an API
@@ -55,31 +55,38 @@ const jobsData = [
       },
 ];
 
-// Inline styles
-const listingStyle = {
-  marginTop: '20px',
-};
+  // Styles for the JobListing component
+  const listingStyle = {
+    marginTop: '20px',
+  };
 
-const headerStyle = {
-  fontSize: '24px',
-  fontWeight: 'bold',
-  marginBottom: '16px',
-};
+  const headerStyle = {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    marginBottom: '16px',
+  };
 
-// The JobListing component
-const JobListing = ({ onJobSelect }) => {
-    const handleJobCardClick = (jobId) => {
-        onJobSelect(jobId);
-      };
 
-  return (
-    <div style={listingStyle}>
-      <div style={headerStyle}>Top job picks for you</div>
-      {jobsData.map((job) => (
-        <JobCard key={job.id} job={job} onJobSelect={() => handleJobCardClick(job.id)} />
-      ))}
-    </div>
-  );
-};
-
-export default JobListing;
+  const JobListing = () => {
+    // Styles for the JobListing component
+    const listingStyle = {
+      marginTop: '20px',
+    };
+  
+    const headerStyle = {
+      fontSize: '24px',
+      fontWeight: 'bold',
+      marginBottom: '16px',
+    };
+  
+    return (
+      <div style={listingStyle}>
+        <div style={headerStyle}>Top job picks for you</div>
+        {jobsData.map((job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </div>
+    );
+  };
+  
+  export default JobListing;

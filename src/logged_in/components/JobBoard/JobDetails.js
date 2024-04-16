@@ -1,9 +1,10 @@
-// src/components/JobBoard/JobDetails.js
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Button, Box, Chip } from '@mui/material';
+import { Card, CardContent, Typography, Button, Box, Chip, useTheme, useMediaQuery } from '@mui/material';
 import JobDetailsData from './JobDetailsData'; // Ensure this path is correct
 
 const JobDetails = ({ jobId }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const job = JobDetailsData[jobId];
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -17,7 +18,12 @@ const JobDetails = ({ jobId }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: '600px', margin: '20px', flexGrow: 1 }}>
+    <Card sx={{ 
+      maxWidth: isMobile ? '100%' : '600px', // full width on mobile
+      margin: isMobile ? '10px' : '20px', // smaller margin on mobile
+      flexGrow: 1,
+      overflow: 'visible', // prevent clipping of elements like dropdowns
+    }}>
       <CardContent>
         <Typography variant="h5" component="h2" sx={{ marginBottom: '16px' }}>
           {job.title}
@@ -34,8 +40,8 @@ const JobDetails = ({ jobId }) => {
           <Chip label={job.level} size="small" />
           <Chip label={`${job.companySize} employees`} size="small" />
           <Chip label={job.industry} size="small" />
-          {job.skills.map(skill => (
-            <Chip key={skill} label={skill} size="small" />
+          {job.skills.map((skill, index) => (
+            <Chip key={index} label={skill} size="small" />
           ))}
         </Box>
 
