@@ -11,6 +11,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const FreelancerSignup = () => {
   const [cvFile, setCvFile] = useState(null);
+  const [linkedInUrl, setLinkedInUrl] = useState('');
   const history = useHistory();
   const steps = ['Resume', 'Complete'];
 
@@ -40,27 +41,35 @@ const FreelancerSignup = () => {
       const db = getFirestore();
       const storage = getStorage();
       let cvUrl = "";
-
+  
       if (cvFile) {
         const storageRef = ref(storage, `user_cv/${user.uid}/${cvFile.name}`);
         await uploadBytes(storageRef, cvFile);
         cvUrl = await getDownloadURL(storageRef);
       }
-
+  
+      // Providing default values for missing user info
       const userProfile = {
-        // Replace the following properties with your actual data collection logic
-        // as necessary for your application.
-        cvUrl: cvUrl,
-        // ...other user properties...
+        name: user.displayName || "No Name Provided",
+        email: user.email || "No Email Provided",
+        photoURL: user.photoURL || "https://example.com/default-avatar.png",
+        cvUrl: cvUrl || "https://example.com/default-cv.pdf",
+        accountType: "freelancer"
       };
-
+  
       await setDoc(doc(db, "users", user.uid), userProfile);
-      // Additional actions upon successful sign-up, such as navigation, can be added here
+      console.log("User profile created successfully, navigating to user profile page.");
+  
+      // Redirect to user profile page
+      history.push('/c/user-profile');
+      
     } catch (error) {
       console.error("Signup error", error);
       alert("There was an issue with your signup. Please try again.");
     }
   };
+  
+  
 
   const handleSignupError = (error) => {
     console.error("Signup error", error);

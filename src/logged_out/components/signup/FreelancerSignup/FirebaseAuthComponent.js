@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import InputField from '../SharedSignup/InputField';
 import Button from '../SharedSignup/Button';
 import { Checkbox, FormControlLabel } from '@mui/material';
+import { doc, setDoc, getFirestore } from 'firebase/firestore';
 import { auth } from '../../../../shared/firebase/firebase';
 
 const sendGAEvent = ({ action, category, label, value }) => {
@@ -21,8 +22,9 @@ const FirebaseAuthComponent = ({ onSignupSuccess, onSignupError }) => {
   const [password, setPassword] = useState('');
   const [isAgreed, setIsAgreed] = useState(false);
   const [error, setError] = useState('');
-  const [showBanner, setShowBanner] = useState(false);  // State to control the banner
+  const [showBanner, setShowBanner] = useState(false);
   const history = useHistory();
+
 
   const trackButtonEvent = (buttonName) => {
     sendGAEvent({
@@ -36,7 +38,7 @@ const FirebaseAuthComponent = ({ onSignupSuccess, onSignupError }) => {
     return email.length > 0 && password.length > 0 && isAgreed;
   };
 
-  function getRussianErrorMessage(errorCode) {
+  function getErrorMessage(errorCode) {
     switch (errorCode) {
       case 'auth/email-already-in-use':
         return 'The email address is already in use by another account.';
@@ -46,7 +48,6 @@ const FirebaseAuthComponent = ({ onSignupSuccess, onSignupError }) => {
         return 'The operation is not allowed.';
       case 'auth/weak-password':
         return 'The password is weak.';
-      // Add more error codes and messages as needed
       default:
         return 'An unknown error occurred.';
     }
@@ -67,7 +68,7 @@ const FirebaseAuthComponent = ({ onSignupSuccess, onSignupError }) => {
 
     } catch (error) {
       console.error("Error in createAccountWithEmail:", error.message);
-      const russianErrorMessage = getRussianErrorMessage(error.code);
+      const russianErrorMessage = getErrorMessage(error.code);
       setError(russianErrorMessage); // Set error message in Russian based on the error code
       onSignupError(error);
       // Track the failed account creation
@@ -79,20 +80,40 @@ const FirebaseAuthComponent = ({ onSignupSuccess, onSignupError }) => {
     }
   };
 
+
+
   const signInWithGoogle = async () => {
-    trackButtonEvent('Google Signin');
     if (!isAgreed) {
       setError("Please accept the terms of the Personal Data Processing Policy.");
       return;
     }
     try {
       const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: 'select_account' });
       const result = await signInWithPopup(auth, provider);
+      console.log("Google sign-in result obtained:", result);
+
+      if (!result.user) {
+        throw new Error('Failed to retrieve user data from Google.');
+      }
+
+      const { uid, displayName, email, photoURL } = result.user;
+      console.log("User details - UID:", uid, "Name:", displayName, "Email:", email, "Photo URL:", photoURL);
+
+      const db = getFirestore();
+      const userRef = doc(db, 'users', uid);
+      await setDoc(userRef, {
+        name: displayName,
+        email: email,
+        photoURL: photoURL
+      });
+      console.log("User data saved to Firestore successfully.");
+
       onSignupSuccess(result.user);
     } catch (error) {
-      console.error("Error in signInWithGoogle:", error.message);
+      console.error("Error in signInWithGoogle:", error);
       setError(error.message);
-      onSignupError(error);
+      onSignupError && onSignupError(error);
     }
   };
 

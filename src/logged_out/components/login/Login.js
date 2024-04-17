@@ -6,9 +6,10 @@ import { auth } from '../../../shared/firebase/firebase';
 import { actionTypes } from '../../../reducer';
 import { useStateValue } from '../../../StateProvider';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { Container, Paper, TextField, Button, Typography } from '@mui/material';
+import { Container, Paper, Grid, TextField, Button, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import InfoIcon from '@mui/icons-material/Info'; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,6 +69,10 @@ function Login() {
       setCancel(true);
     };
   }, [user]);
+
+  const handleRegisterRedirect = () => {
+    history.push('/register'); // Redirect to the registration page
+  };
 
   const navigateBasedOnAccountType = (accountType) => {
     console.log("Account type received:", accountType); // Debug log
@@ -178,6 +183,16 @@ function Login() {
   return (
     <Container component="main" maxWidth="xs" className={classes.root}>
       <Paper className={classes.paper}>
+      <Grid container direction="column" alignItems="center" justify="center" style={{ minHeight: '60vh' }}>
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<InfoIcon />}
+          onClick={handleRegisterRedirect}
+          style={{ marginBottom: 20 }}
+        >
+          Don't have an account? Register
+        </Button>
         <Typography component="h1" variant="h5">Login</Typography>
         <form className={classes.form} onSubmit={signInWithEmail} noValidate>
           <TextField
@@ -237,7 +252,7 @@ function Login() {
           {error && <Typography className={classes.errorText}>{error}</Typography>}
         </form>
         <a href="#" className="forgot-password-link" style={{ textAlign: 'center', color: 'black'}} onClick={handleForgotPassword}>Forgot password? Reset.</a>
-        <a href="/Signup" className="reg-link" style={{ color: 'black'}}> Don't have an account? Sign up</a>
+        </Grid>
       </Paper>
     </Container>
   );

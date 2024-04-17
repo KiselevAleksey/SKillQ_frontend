@@ -124,16 +124,16 @@ const BenefitsTable = () => {
           </TableHead>
           <TableBody>
             {rows.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                        {row.feature}
+                <TableRow key={index}>
+                <TableCell component="th" scope="row" style={{ fontSize: '1.1rem' }}>
+                    {row.feature}
                 </TableCell>
-                    <TableCell align="center">{getMark(row.cashDash)}</TableCell>
-                    <TableCell align="center">{getMark(row.otherCashbackPlatforms)}</TableCell>
-                    <TableCell align="center">{getMark(row.traditionalLoyalty)}</TableCell>
-              </TableRow>
+                <TableCell align="center" style={{ fontSize: '1.1rem' }}>{getMark(row.cashDash)}</TableCell>
+                <TableCell align="center" style={{ fontSize: '1.1rem' }}>{getMark(row.otherCashbackPlatforms)}</TableCell>
+                <TableCell align="center" style={{ fontSize: '1.1rem' }}>{getMark(row.traditionalLoyalty)}</TableCell>
+                </TableRow>
             ))}
-          </TableBody>
+            </TableBody>
         </Table>
     </TableContainer>
 
