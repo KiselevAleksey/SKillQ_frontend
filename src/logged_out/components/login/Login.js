@@ -71,20 +71,21 @@ function Login() {
 
   const navigateBasedOnAccountType = (accountType) => {
     console.log("Account type received:", accountType); // Debug log
-
+  
     if (cancel) return;
-
+  
     accountType = accountType.trim().toLowerCase(); // Trim and convert to lower case
-
+  
     if (accountType === 'freelancer') {
-      history.push('/c/user-profile'); // Changed to history.push
+      history.push('/c/user-profile'); // Navigate to user profile for freelancers
     } else if (accountType === 'company') {
-      history.push('/companydashboard'); // Changed to history.push
+      history.push('/companydashboard'); // Navigate to company dashboard
     } else {
       console.error('Invalid account type:', accountType); // More informative error
-      setError('Unexpected account type');
+      setError('The user is not registered');
+      history.push('/register'); // Redirect to the registration page
     }
-  };
+  }; 
 
 
   const signInWithEmail = async (e) => {

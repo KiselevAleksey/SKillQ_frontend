@@ -126,15 +126,15 @@ const BenefitsTable = () => {
             {rows.map((row, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">
-            {row.feature}
-        </TableCell>
-        <TableCell align="center">{getMark(row.cashDash)}</TableCell>
-        <TableCell align="center">{getMark(row.otherCashbackPlatforms)}</TableCell>
-        <TableCell align="center">{getMark(row.traditionalLoyalty)}</TableCell>
-     </TableRow>
-    ))}
-    </TableBody>
-    </Table>
+                        {row.feature}
+                </TableCell>
+                    <TableCell align="center">{getMark(row.cashDash)}</TableCell>
+                    <TableCell align="center">{getMark(row.otherCashbackPlatforms)}</TableCell>
+                    <TableCell align="center">{getMark(row.traditionalLoyalty)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
     </TableContainer>
 
     <div className={classes.buttonCenter}>
