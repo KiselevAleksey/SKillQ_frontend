@@ -12,7 +12,7 @@ const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
   const [countdown, setCountdown] = useState(0); // Initialize countdown
 
   // Different delays for question 1 and question 2
-  const delayTime = currentQuestionIndex === 0 ? 30 : 300; // 30 seconds for Q1, 5 minutes (300 seconds) for Q2
+  const delayTime = currentQuestionIndex === 0 ? 30 : 180;
 
   const handleVideoEnd = () => {
     console.log('Video in SplitContainer ended');
@@ -74,6 +74,7 @@ const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
               setRecording={setRecording}
               setShowRegistrationModal={setShowRegistrationModal}
               onNextQuestion={onNextQuestion}
+              currentQuestionIndex={currentQuestionIndex}
             />
           ) : (
             <div style={videoContainerStyle}>

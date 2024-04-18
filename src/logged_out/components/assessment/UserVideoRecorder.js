@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserVideoRecorder = ({ onRef, onNextQuestion }) => {
+const UserVideoRecorder = ({ onRef, onNextQuestion, currentQuestionIndex }) => {
   const localVideoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [videoStarted, setVideoStarted] = useState(false);
   const [recording, setRecording] = useState(false);
-  const [timer, setTimer] = useState(300); // Timer starts at 5 minutes (300 seconds)
+  const [timer, setTimer] = useState(currentQuestionIndex === 0 ? 300 : 450); // 5 minutes for the first question, 7.5 minutes for others
   const classes = useStyles();
 
   const handleDataAvailable = (event) => {
@@ -122,22 +122,33 @@ const UserVideoRecorder = ({ onRef, onNextQuestion }) => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  const buttonText = currentQuestionIndex === 0 ? "Next Question" : "Finish";
+
   // Check if timer has ended
   useEffect(() => {
-    if (timer <= 0) {
-      handleNextQuestion();
-    }
-  }, [timer]);
+      const timerInterval = setInterval(() => {
+          setTimer((prevTime) => {
+              if (prevTime <= 0) {
+                  clearInterval(timerInterval);
+                  handleNextQuestion();
+                  return 0;
+              }
+              return prevTime - 1;
+          });
+      }, 1000);
+
+      return () => clearInterval(timerInterval);
+  }, []);
 
   return (
     <div className={classes.videoContainer}>
       <video ref={localVideoRef} autoPlay muted className={classes.videoElement} />
       <div className={classes.timerAndButton}>
         <Typography variant="body1">
-          Please reply, next question in {formatTimer()}
+          Please reply, time remained {formatTimer()}
         </Typography>
         <Button variant="contained" color="primary" onClick={handleNextQuestion} disabled={!videoStarted}>
-          Next Question
+            {buttonText}
         </Button>
       </div>
     </div>

@@ -39,38 +39,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const RegistrationModal = ({ isOpen, onRequestClose }) => {
-    const classes = useStyles();
+const RegistrationModal = ({ isOpen, onClose }) => {
+  const classes = useStyles();
 
-    return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-            contentLabel="Complete Registration"
-            ariaHideApp={false}
-            className={classes.modalContent}
-            overlayClassName={classes.modalOverlay}
-        >
-            <Typography variant="h4" gutterBottom align="center">
-                Great! Your video is saved.
-            </Typography>
-            <Typography variant="body1" paragraph align="center">
-                To dive into the insights and get your personalized assessment, let's get you started with a quick registration. Ready to unlock the power of your video?
-            </Typography>
-            <Box textAlign="center">
-                <Button
-                    variant="contained"
-                    color="primary"
-                    component={Link}
-                    to="/login"
-                    onClick={onRequestClose}
-                    className={classes.registerButton}
-                >
-                    Register Now
-                </Button>
-            </Box>
-        </Modal>
-    );
+  return (
+      <Modal
+          isOpen={isOpen}
+          onRequestClose={onClose}  // Changed to onClose
+          contentLabel="Complete Registration"
+          ariaHideApp={false}
+          className={classes.modalContent}
+          overlayClassName={classes.modalOverlay}
+      >
+          <Typography variant="h4" gutterBottom align="center">
+              Great! Your video is saved.
+          </Typography>
+          <Typography variant="body1" paragraph align="center">
+              To dive into the insights and get your personalized assessment, let's get you started with a quick registration. Ready to unlock the power of your video?
+          </Typography>
+          <Box textAlign="center">
+              <Button
+                  variant="contained"
+                  color="primary"
+                  component={Link}
+                  to="/login"
+                  onClick={onClose}  // Changed to onClose
+                  className={classes.registerButton}
+              >
+                  Register Now
+              </Button>
+          </Box>
+      </Modal>
+  );
 };
 
 export default RegistrationModal;
