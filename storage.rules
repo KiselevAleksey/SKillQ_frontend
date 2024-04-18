@@ -9,13 +9,13 @@ service firebase.storage {
     match /user_cv/{userId}/{allPaths=**} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
-    // Rules for CVs
-    match /user_cv/{userId}/{allPaths=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    // Rules for CVs
+    // Rules for project_proposals
     match /project_proposals/{userId}/{allPaths=**} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    // Rules for video_questions
+    match /video_questions_for_assessment/{allPaths=**} {
+      allow read;
     }
     // Rules for public
     match /public/{allPaths=**} {

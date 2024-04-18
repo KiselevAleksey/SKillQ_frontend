@@ -2,8 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import VideoPlayer from './VideoPlayer';
 import SplitContainer from './SplitContainer';
 import VideoEndButton from './VideoEndButton';
-import CategorySelector from './CategorySelector/CategorySelector';
-import categoryQuestions from './CategorySelector/categoryQuestions';
+import CategorySelector from './CategorySelector/CategorySelectorNew'; //CategorySelector
 
 import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
@@ -30,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.modal + 2,
   },
 }));
-
 
 
 const AssessmentPopup = ({ onClose }) => {
@@ -72,8 +70,6 @@ const AssessmentPopup = ({ onClose }) => {
     if (onClose) onClose(); // Updated this line
   };
 
-
-
   const setStopVideoStream = useCallback((stopFunction) => {
     stopVideoStreamRef.current = stopFunction;
   }, []);
@@ -91,18 +87,14 @@ const AssessmentPopup = ({ onClose }) => {
     }
   };
 
-  const handleCategorySubmit = (selectedCategory) => {
-    const selectedLists = categoryQuestions[selectedCategory];
-    const randomQuestion1 = selectedLists.list1[Math.floor(Math.random() * selectedLists.list1.length)];
-    const randomQuestion2 = selectedLists.list2[Math.floor(Math.random() * selectedLists.list2.length)];
-
-    setQuestions([
-      { videoSrc: `${process.env.PUBLIC_URL}/result_voice.mp4`, text: randomQuestion1 },
-      { videoSrc: `${process.env.PUBLIC_URL}/result_voice.mp4`, text: randomQuestion2 },
-    ]);
+  const handleCategorySubmit = (questionData) => {
     setIsCategorySelected(true);
+    setQuestions([
+      { questionText: questionData.firstQuestion.questionText, videoSrc: questionData.firstQuestion.videoURL },
+      { questionText: questionData.secondQuestion.questionText, videoSrc: questionData.secondQuestion.videoURL }
+    ]);
   };
-
+  
   return (
     <div className={classes.popup}>
     <IconButton className={classes.closeButton} onClick={handleClose}>
@@ -125,12 +117,12 @@ const AssessmentPopup = ({ onClose }) => {
           )}
           {userIsReady && (
             <SplitContainer
-              key={currentQuestionIndex} // Using key to force re-render when the index changes
+              key={currentQuestionIndex} 
               videoSrc={questions[currentQuestionIndex]?.videoSrc}
               onRef={setStopVideoStream}
               autoStart={true}
-              questionText={questions[currentQuestionIndex]?.text}
-              onNextQuestion={handleNextQuestion} // Passing the handler down to SplitContainer
+              questionText={questions[currentQuestionIndex]?.questionText}
+              onNextQuestion={handleNextQuestion}
             />
           )}
         </>
