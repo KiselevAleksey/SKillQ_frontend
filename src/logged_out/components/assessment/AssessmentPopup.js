@@ -37,11 +37,9 @@ const AssessmentPopup = ({ onClose }) => {
   const [isVideoEnded, setIsVideoEnded] = useState(false);
   const [userIsReady, setUserIsReady] = useState(false);
   const stopVideoStreamRef = useRef(null);
-  const [selectedCategory, setSelectedCategory] = useState('');
   const [isCategorySelected, setIsCategorySelected] = useState(false);
   const [questions, setQuestions] = useState([]);
   const localVideoRef = useRef(null); // Define localVideoRef
-  const [videoStarted, setVideoStarted] = useState(false);
 
   // Cleanup the video stream when the component unmounts
   useEffect(() => {
@@ -52,54 +50,51 @@ const AssessmentPopup = ({ onClose }) => {
     };
   }, []);
 
-  const handleVideoEnd = () => {
-    setIsVideoEnded(true);
-  };
-
-  const handleUserReady = () => {
-    setUserIsReady(true);
-  };
+  const handleVideoEnd = () => setIsVideoEnded(true);
+  const handleUserReady = () => setUserIsReady(true);
 
   const handleClose = () => {
-    // Force stop the video stream
     if (localVideoRef.current && localVideoRef.current.srcObject) {
         console.log('handleClose stopping:', localVideoRef.current?.srcObject);
-        stopVideo(localVideoRef, setVideoStarted);
+        stopVideo(localVideoRef);
     }
-
-    if (onClose) onClose(); // Updated this line
+    // Corrected usage for calling onClose if it exists
+    if (onClose) onClose(); 
   };
 
   const setStopVideoStream = useCallback((stopFunction) => {
     stopVideoStreamRef.current = stopFunction;
   }, []);
-
+  
   const handleNextQuestion = () => {
-    if (stopVideoStreamRef.current) {
-      stopVideoStreamRef.current();
-    }
+    if (stopVideoStreamRef.current) stopVideoStreamRef.current();
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-      setUserIsReady(false); // Reset ready state for the next question
+      setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      setUserIsReady(false);
     } else {
       console.log('Assessment completed');
-      if (onClose) onClose(); // Updated this line
+      // Corrected usage for calling onClose if it exists
+      if (onClose) onClose(); 
     }
+  };
+
+  const processCategoryData = (questionData) => {
+    return [
+      { questionText: questionData.firstQuestion.questionText, videoSrc: questionData.firstQuestion.videoURL },
+      { questionText: questionData.secondQuestion.questionText, videoSrc: questionData.secondQuestion.videoURL }
+    ];
   };
 
   const handleCategorySubmit = (questionData) => {
     setIsCategorySelected(true);
-    setQuestions([
-      { questionText: questionData.firstQuestion.questionText, videoSrc: questionData.firstQuestion.videoURL },
-      { questionText: questionData.secondQuestion.questionText, videoSrc: questionData.secondQuestion.videoURL }
-    ]);
+    setQuestions(processCategoryData(questionData));
   };
   
   return (
     <div className={classes.popup}>
-    <IconButton className={classes.closeButton} onClick={handleClose}>
-      <CloseIcon />
-    </IconButton>
+      <IconButton className={classes.closeButton} onClick={handleClose}>
+        <CloseIcon />
+      </IconButton>
       {!isCategorySelected ? (
         <CategorySelector
           categories={['Marketing', 'Strategy', 'Management']}
@@ -111,9 +106,7 @@ const AssessmentPopup = ({ onClose }) => {
             <VideoPlayer onVideoEnd={handleVideoEnd} src={`${process.env.PUBLIC_URL}/intro_video.mp4`} />
           )}
           {isVideoEnded && !userIsReady && (
-            <VideoEndButton 
-            onReady={handleUserReady}
-            currentQuestionIndex={currentQuestionIndex}  />
+            <VideoEndButton onReady={handleUserReady} currentQuestionIndex={currentQuestionIndex} />
           )}
           {userIsReady && (
             <SplitContainer

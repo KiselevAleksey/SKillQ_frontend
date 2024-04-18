@@ -51,14 +51,10 @@ const UserVideoRecorder = ({ onRef, onNextQuestion }) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'recorded_video.webm'; // You could also use a timestamp or unique identifier here
-    a.style.display = 'none';
-    document.body.appendChild(a); // Append the anchor to the body
+    a.download = 'recorded_video.webm'; // Save as WebM but you could choose other formats
     a.click();
     window.URL.revokeObjectURL(url);
-    document.body.removeChild(a); // Clean up
-    console.log('Recording finished and video downloaded');
-  };
+};
 
   useEffect(() => {
     // Start video and recording setup
