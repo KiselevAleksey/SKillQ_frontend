@@ -116,16 +116,16 @@ const BenefitsTable = () => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Feature</TableCell>
-              <TableCell align="center">SkillQ</TableCell>
-              <TableCell align="center">Social Job Platforms</TableCell>
-              <TableCell align="center">Other Job Boards</TableCell>
+              <TableCell style={{ fontSize: '1.1rem' }}>Feature</TableCell>
+              <TableCell align="center" style={{ fontSize: '1.1rem' }}>SkillQ</TableCell>
+              <TableCell align="center" style={{ fontSize: '1.1rem' }}>Social Job Platforms</TableCell>
+              <TableCell align="center" style={{ fontSize: '1.1rem' }}>Other Job Boards</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row, index) => (
                 <TableRow key={index}>
-                <TableCell component="th" scope="row" style={{ fontSize: '1.1rem' }}>
+                <TableCell component="th" scope="row" style={{ fontSize: '1.0rem' }}>
                     {row.feature}
                 </TableCell>
                 <TableCell align="center" style={{ fontSize: '1.1rem' }}>{getMark(row.cashDash)}</TableCell>

@@ -5,8 +5,8 @@ export const startVideo = (videoRef, setVideoStarted, onStreamReady) => {
     setVideoStarted(true);
     const displayConstraints = {
         video: {
-            width: { ideal: 1280 },  // Higher display resolution width
-            height: { ideal: 720 },  // Higher display resolution height
+            width: { ideal: 450 },  // Higher display resolution width
+            height: { ideal: 450 },  // Higher display resolution height
             frameRate: { ideal: 30 } // Higher frame rate for smoother display
         },
         audio: true

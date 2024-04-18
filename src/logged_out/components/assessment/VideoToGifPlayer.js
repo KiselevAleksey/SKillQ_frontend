@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-const VideoToGifPlayer = ({ videoSrc, gifSrc = 'slow_gif.gif' }) => {
+const VideoToGifPlayer = ({ videoSrc, gifSrc = 'slow_gif.gif', onVideoEnd }) => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
+    onVideoEnd();  // Notify the parent component that the video has ended
   };
 
   return (
