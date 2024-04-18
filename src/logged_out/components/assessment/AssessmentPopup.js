@@ -116,6 +116,7 @@ const AssessmentPopup = ({ onClose }) => {
               autoStart={true}
               questionText={questions[currentQuestionIndex]?.questionText}
               onNextQuestion={handleNextQuestion}
+              currentQuestionIndex={currentQuestionIndex}
             />
           )}
         </>

@@ -80,7 +80,7 @@ const SplitContainer = ({ videoSrc, onRef, setVideoStarted, setRecording,
               {videoHasEnded && !readyToRecord && (
                 <>
                   <Typography variant="h6" style={{ textAlign: 'center' }}>
-                    Preparing for recording: {formatCountdown()}
+                    Please, prepare to answer: {formatCountdown()}
                   </Typography>
                   <Button variant="contained" color="primary" onClick={handleReadyClick} style={{ marginTop: 20 }}>
                     I'm Ready
