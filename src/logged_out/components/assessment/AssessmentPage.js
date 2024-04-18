@@ -97,12 +97,8 @@ const AssessmentPage = () => {
   const handleCloseAssessmentPopup = () => {
     console.log('Assessment popup closed, opening registration modal');
     setShowAssessmentPopup(false);
-    setTimeout(() => {
-        console.log('Opening registration modal now');
-        setShowRegistrationModal(true);
-    }, 100); // Increased delay for clarity in logs
-};
-
+    setShowRegistrationModal(true); // Directly set the modal to show without delay
+  };
 
   const handleCloseRegistrationModal = () => {
     console.log('Registration modal closed');
@@ -177,7 +173,7 @@ const AssessmentPage = () => {
       )}
 
       <RegistrationModal
-        open={showRegistrationModal}
+        isOpen={showRegistrationModal}
         onClose={handleCloseRegistrationModal}
       />
     </>
