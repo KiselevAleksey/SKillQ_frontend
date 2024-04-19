@@ -112,7 +112,7 @@ function HeadSection(props) {
               </div>
             </Grid>
             <Grid item xs={12} lg={7}>
-            <img src={`${process.env.PUBLIC_URL}/images/logged_out/front_screen_1.jpg`} alt="Job Market" className={classes.image} />
+            <img src={`${process.env.PUBLIC_URL}/images/logged_out/front_screen_1.webp`} alt="Job Market" className={classes.image} />
             </Grid>
           </Grid>
         </div>

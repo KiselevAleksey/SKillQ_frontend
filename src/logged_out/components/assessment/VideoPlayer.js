@@ -1,9 +1,27 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-const VideoPlayer = ({ src, onVideoEnd }) => {
-  const videoRef = useRef(null); // Reference to the video element
+const VideoPlayer = ({ videoPath, onVideoEnd }) => {
+  const videoRef = useRef(null);
+  const [videoUrl, setVideoUrl] = useState('');
 
-  // Effect to handle video play and end events
+  useEffect(() => {
+    // Fetch the video URL from Firebase Storage
+    const fetchVideo = async () => {
+      const storage = getStorage();
+      const videoRef = ref(storage, videoPath); // Use videoPath to refer to your video in storage
+
+      try {
+        const url = await getDownloadURL(videoRef);
+        setVideoUrl(url);
+      } catch (error) {
+        console.error('Failed to load video', error);
+      }
+    };
+
+    fetchVideo();
+  }, [videoPath]);
+
   useEffect(() => {
     const videoElement = videoRef.current;
 
@@ -21,11 +39,11 @@ const VideoPlayer = ({ src, onVideoEnd }) => {
     return () => {
       videoElement.removeEventListener('ended', handleVideoEnd);
     };
-  }, [onVideoEnd]); // Only re-run if onVideoEnd changes
+  }, [onVideoEnd]);
 
   return (
     <div>
-      <video ref={videoRef} src={src} controls autoPlay />
+      <video ref={videoRef} src={videoUrl} controls autoPlay />
     </div>
   );
 };

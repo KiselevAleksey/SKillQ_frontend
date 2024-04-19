@@ -300,7 +300,7 @@ function NavBar(props) {
             <Link to="/c/user-profile" style={{ textDecoration: 'none' }}>
               <Avatar
                 alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg`}
+                src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.webp`}
                 className={classNames(classes.accountAvatar)}
               />
             </Link>

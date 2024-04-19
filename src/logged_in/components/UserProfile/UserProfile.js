@@ -118,7 +118,7 @@ const UserProfile = () => {
     return (
       <Paper elevation={3} sx={{ maxWidth: 800, mx: 'auto', my: 4, p: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: 2 }}>
-          <Avatar alt={userData.name} src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg`} sx={{ width: 90, height: 90, mb: 2 }} />
+          <Avatar alt={userData.name} src={`${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.webp`} sx={{ width: 90, height: 90, mb: 2 }} />
           <Typography variant="h5" gutterBottom>
             {userData.name}
           </Typography>

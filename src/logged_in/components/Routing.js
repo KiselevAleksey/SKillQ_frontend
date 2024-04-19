@@ -65,7 +65,7 @@ function Routing(props) {
         <PropsRoute
           path="/c/diagram"
           component={isMobile ? MobilePetalDiagram : PetalDiagram}
-          userData={{ photoUrl: `${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.jpg` }}
+          userData={{ photoUrl: `${process.env.PUBLIC_URL}/images/logged_in/Yuliya_Fomina.webp` }}
         />
         <PropsRoute
           path="/c/tabs"

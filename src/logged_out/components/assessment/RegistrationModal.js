@@ -52,7 +52,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
           overlayClassName={classes.modalOverlay}
       >
           <Typography variant="h4" gutterBottom align="center">
-              Great! Your video is saved.
+              Great! The assessment is finished.
           </Typography>
           <Typography variant="body1" paragraph align="center">
               To dive into the insights and get your personalized assessment, let's get you started with a quick registration. Ready to unlock the power of your video?

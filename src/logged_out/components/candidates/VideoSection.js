@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { withStyles, useTheme } from '@mui/styles';
-import { Grid, Box, Button, Typography, Card, useMediaQuery } from '@mui/material';
+import { Grid, Typography, Card, useMediaQuery } from '@mui/material';
 import ReactPlayer from 'react-player';
-import { Link } from 'react-router-dom';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const styles = (theme) => ({
   card: {
@@ -64,10 +65,28 @@ const styles = (theme) => ({
   },
 });
 
+
 function VideoSection({ classes }) {
+  const [videoUrl, setVideoUrl] = useState('');
   const [playVideo, setPlayVideo] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      const storage = getStorage();
+      const videoRef = ref(storage, '/public/Welcome to the Team.mp4'); // Update path as needed
+
+      try {
+        const url = await getDownloadURL(videoRef);
+        setVideoUrl(url);
+      } catch (error) {
+        console.error('Failed to load video', error);
+      }
+    };
+
+    fetchVideo();
+  }, []);
 
   const togglePlayVideo = () => {
     setPlayVideo(!playVideo);
@@ -79,7 +98,7 @@ function VideoSection({ classes }) {
         <Card className={classes.card}>
           <div className={classes.playerWrapper}>
             <ReactPlayer
-              url={`${process.env.PUBLIC_URL}/Welcome to the Team.mp4`}
+              url={videoUrl}
               playing={playVideo}
               controls={true}
               className={classes.reactPlayer}
