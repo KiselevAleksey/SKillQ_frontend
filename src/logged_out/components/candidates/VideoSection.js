@@ -75,7 +75,7 @@ function VideoSection({ classes }) {
   useEffect(() => {
     const fetchVideo = async () => {
       const storage = getStorage();
-      const videoRef = ref(storage, '/public/Welcome to the Team.mp4'); // Update path as needed
+      const videoRef = ref(storage, '/public/Welcome to the Team.mp4');
 
       try {
         const url = await getDownloadURL(videoRef);

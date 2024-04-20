@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import JobCard from './JobCard'; // Make sure the path to JobCard.js is correct
+import JobFilters from './JobFilters'; // make sure the path is correct
 
 // You can replace this mock data with actual job data fetched from an API
 const jobsData = [
@@ -7,7 +8,7 @@ const jobsData = [
         id: 2,
         title: 'SMM Strategist',
         company: 'Garrett-Moore',
-        location: 'Malaysia (Abigailborough)',
+        location: 'Malaysia (Kuala Lumpur)',
         matched: true,
         promoted: false,
         easyApply: true,
@@ -17,7 +18,7 @@ const jobsData = [
         id: 3,
         title: 'Brand Marketing Executive',
         company: 'Salazar, Vincent and Evans',
-        location: 'Malaysia (Lake Justinview)',
+        location: 'Malaysia (Kuala Lumpur)',
         matched: false,
         promoted: false,
         easyApply: false,
@@ -27,7 +28,7 @@ const jobsData = [
         id: 4,
         title: 'Product Marketing Lead',
         company: 'Jones and Sons',
-        location: 'Malaysia (Hollandside)',
+        location: 'Malaysia (Kuala Lumpur)',
         matched: false,
         promoted: true,
         easyApply: false,
@@ -37,7 +38,7 @@ const jobsData = [
         id: 5,
         title: 'Marketing Manager',
         company: 'Lee PLC',
-        location: 'Malaysia (New Ronniemouth)',
+        location: 'Malaysia (Kuala Lumpur)',
         matched: false,
         promoted: false,
         easyApply: true,
@@ -47,7 +48,7 @@ const jobsData = [
         id: 6,
         title: 'Product Marketing Lead',
         company: 'Hernandez-Brown',
-        location: 'Malaysia (South Toddside)',
+        location: 'Malaysia (Kuala Lumpur)',
         matched: false,
         promoted: false,
         easyApply: true,
@@ -81,6 +82,7 @@ const jobsData = [
   
     return (
       <div style={listingStyle}>
+        <JobFilters />
         <div style={headerStyle}>Top job picks for you</div>
         {jobsData.map((job) => (
           <JobCard key={job.id} job={job} />

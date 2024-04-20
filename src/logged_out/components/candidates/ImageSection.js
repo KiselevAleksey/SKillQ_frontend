@@ -20,8 +20,9 @@ const styles = (theme) => ({
     justifyContent: 'center',
     padding: theme.spacing(3),
     textAlign: 'left',
-    boxShadow: 'none',
-    backgroundColor: 'transparent',
+    boxShadow: 'none',  // This removes any shadow.
+    backgroundColor: 'transparent', // This ensures background is fully transparent.
+    border: 'none'  // Ensures no border is visible.
   },
   button: {
     marginTop: theme.spacing(2),
@@ -47,12 +48,11 @@ const styles = (theme) => ({
   },
   imageWrapper: {
     margin: theme.spacing(2),
+    backgroundColor: 'transparent', // Ensures no background color
   },
   image: {
     maxWidth: '100%',
     height: 'auto',
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[4],
   },
   textContent: {
     padding: theme.spacing(2),
@@ -66,7 +66,6 @@ const styles = (theme) => ({
     marginTop: theme.spacing(4),
     fontSize: '1.1rem',
   },
-
 });
 
 function ImageSection({ classes }) {

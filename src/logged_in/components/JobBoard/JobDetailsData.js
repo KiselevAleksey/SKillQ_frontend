@@ -11,7 +11,11 @@ const JobDetailsData = {
       industry: 'Financial Services',
       alumniCount: '27 company alumni work here',
       schoolAlumniCount: '3 school alumni work here',
-      skills: ['Equities', 'Optimization', '+8 more'],
+      skills: {
+        'Equities': 70,
+        'Optimization': 75,
+        'Risk Management': 80
+      },  
       description: 'GIC is one of the world’s largest sovereign wealth funds. With over 2,000 employees ...',
     },
     2: {
@@ -24,7 +28,13 @@ const JobDetailsData = {
         industry: 'Marketing and Advertising',
         alumniCount: '12 company alumni work here',
         schoolAlumniCount: '2 school alumni work here',
-        skills: ['Content Marketing'],
+        skills: {
+            'Content Marketing': 65,
+            'Product Marketing': 80,
+            'SMM': 50,
+            'Presentation': 70,
+            'Sales': 60
+          },
         description: 'Garrett-Moore is a leading marketing agency specializing in social media management. As an SMM Strategist, you will be responsible for developing and implementing social media strategies to drive engagement and growth for our clients. Join our dynamic team and make an impact!',
     },
     3: {
@@ -37,7 +47,11 @@ const JobDetailsData = {
         industry: 'Consumer Goods',
         alumniCount: '5 company alumni work here',
         schoolAlumniCount: '1 school alumni work here',
-        skills: ['SMM', 'Content Marketing'],
+        skills: {
+            'SMM': 60,
+            'Content Marketing': 70,
+            'Presentation': 60
+          },      
         description: 'Salazar, Vincent and Evans is a fast-growing consumer goods company known for its innovative products and dynamic marketing campaigns. As a Brand Marketing Executive, you will play a key role in developing and executing marketing strategies to drive brand awareness and customer engagement. Join our team and be part of our exciting journey!',
     },
     4: {
@@ -50,7 +64,11 @@ const JobDetailsData = {
         industry: 'Technology',
         alumniCount: '8 company alumni work here',
         schoolAlumniCount: '0 school alumni work here',
-        skills: ['Product Marketing', 'Content Marketing'],
+        skills: {
+            'Product Marketing': 85,
+            'Content Marketing': 75,
+            'Sales': 80
+          },
         description: 'Jones and Sons is a leading technology company specializing in innovative software solutions. As a Product Marketing Lead, you will be responsible for developing and executing marketing strategies to drive product adoption and revenue growth. Join our team and help shape the future of technology!',
     },
     5: {
@@ -63,7 +81,13 @@ const JobDetailsData = {
         industry: 'Retail',
         alumniCount: '15 company alumni work here',
         schoolAlumniCount: '2 school alumni work here',
-        skills: ['Content Marketing', 'Product Marketing', 'SMM'],
+        skills: {
+            'Content Marketing': 70,
+            'Product Marketing': 75,
+            'SMM': 80,
+            'Sales': 85
+          },
+      
         description: 'Lee PLC is a leading retail company with a diverse portfolio of brands. As a Marketing Manager, you will lead a team responsible for developing and executing marketing campaigns to drive brand awareness and sales. Join our dynamic team and help us shape the future of retail!',
     },
     6: {
@@ -76,7 +100,12 @@ const JobDetailsData = {
         industry: 'Technology',
         alumniCount: '6 company alumni work here',
         schoolAlumniCount: '1 school alumni work here',
-        skills: ['SMM', 'Product Marketing', 'Content Marketing'],
+        skills: {
+            'SMM': 75,
+            'Product Marketing': 80,
+            'Content Marketing': 70,
+            'Presentation': 85
+          },
         description: 'Hernandez-Brown is a global technology company known for its innovative products and solutions. As a Product Marketing Lead, you will drive the go-to-market strategy for our products and collaborate closely with cross-functional teams to ensure successful product launches and adoption. Join our team and be part of our mission to empower businesses with technology!',
     },
   };

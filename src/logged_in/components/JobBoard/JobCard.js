@@ -74,7 +74,6 @@ const JobCard = ({ job }) => {
                 Your profile matches this job
               </Typography>
             )}
-            {job.easyApply && <Typography variant="body2">Easy Apply</Typography>}
           </CardContent>
         </CardActionArea>
       </Card>
