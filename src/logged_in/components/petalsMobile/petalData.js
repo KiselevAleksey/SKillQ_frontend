@@ -79,7 +79,7 @@ const petalData = [
       color: 'rgba(255, 20, 147, 0.2)', // Pink
       bubbles: [
         {
-          name: 'Quickness',
+          name: 'Answer Time',
           number: 63,
           courseLinks: [
             { title: 'Creative Problem Solving', url: 'https://www.coursera.org/learn/creative-problem-solving' },

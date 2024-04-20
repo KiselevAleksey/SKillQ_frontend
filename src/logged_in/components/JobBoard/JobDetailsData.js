@@ -29,11 +29,9 @@ const JobDetailsData = {
         alumniCount: '12 company alumni work here',
         schoolAlumniCount: '2 school alumni work here',
         skills: {
-            'Content Marketing': 65,
-            'Marketing Strategy': 80,
-            'Social Media Marketing': 50,
-            'Presentation': 70,
-            'Sales': 60
+          'Social Media Marketing': 60,
+          'Content Marketing': 70,
+          'Presentation': 60
           },
         description: 'Garrett-Moore is a leading marketing agency specializing in social media management. As an Social Media Marketing Strategist, you will be responsible for developing and implementing social media strategies to drive engagement and growth for our clients. Join our dynamic team and make an impact!',
     },
@@ -48,9 +46,11 @@ const JobDetailsData = {
         alumniCount: '5 company alumni work here',
         schoolAlumniCount: '1 school alumni work here',
         skills: {
-            'Social Media Marketing': 60,
-            'Content Marketing': 70,
-            'Presentation': 60
+            'Content Marketing': 65,
+            'Marketing Strategy': 80,
+            'Social Media Marketing': 50,
+            'Presentation': 70,
+            'Sales': 60
           },      
         description: 'Salazar, Vincent and Evans is a fast-growing consumer goods company known for its innovative products and dynamic marketing campaigns. As a Brand Marketing Executive, you will play a key role in developing and executing marketing strategies to drive brand awareness and customer engagement. Join our team and be part of our exciting journey!',
     },
@@ -67,7 +67,7 @@ const JobDetailsData = {
         skills: {
             'Marketing Strategy': 85,
             'Content Marketing': 75,
-            'Sales': 80
+            'Presentation': 60
           },
         description: 'Jones and Sons is a leading technology company specializing in innovative software solutions. As a Marketing Strategy Lead, you will be responsible for developing and executing marketing strategies to drive product adoption and revenue growth. Join our team and help shape the future of technology!',
     },

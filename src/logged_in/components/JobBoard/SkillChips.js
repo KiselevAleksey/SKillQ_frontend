@@ -59,7 +59,7 @@ const SkillChips = ({ jobSkills, userSkills }) => {
           } else if (userSkillLevel >= requiredLevel) {
             backgroundColor = 'rgba(102, 187, 106, 0.6)';
           } else {
-            backgroundColor = 'rgba(255, 105, 97, 0.6)';
+            backgroundColor = 'rgba(255, 165, 0, 0.5)';
           }
 
           return (

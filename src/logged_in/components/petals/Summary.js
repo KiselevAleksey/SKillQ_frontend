@@ -48,7 +48,7 @@ const Summary = ({ petal }) => {
         break;
       case 'Problem Solving 48%':
         summary = [
-          `Quickness in problem-solving is a strength for you, with a score of 63%.`,
+          `Answer Time in problem-solving is a strength for you, with a score of 63%.`,
           `However, Conceptual thinking appears to be a significant area for improvement at 30%. Focus on developing a deeper understanding of complex problems.`,
           `Analytical thinking is intermediate at 52%; consider honing your data analysis skills.`
         ];

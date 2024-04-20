@@ -68,12 +68,17 @@ const JobCard = ({ job }) => {
               </Typography>
               <CheckCircleIcon color="action" fontSize="small" />
             </Box>
-            {job.matched && (
-              <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <CheckCircleIcon color="success" fontSize="small" />
-                Your profile matches this job
-              </Typography>
-            )}
+            {job.matched ? (
+                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                  <CheckCircleIcon color="success" fontSize="small" />
+                  Your skill level matches this job
+                </Typography>
+              ) : (
+                <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                  <CheckCircleIcon sx={{ color: 'orange' }} fontSize="small" />
+                  Your skills are nearly in line with the job requirements
+                </Typography>
+              )}
           </CardContent>
         </CardActionArea>
       </Card>

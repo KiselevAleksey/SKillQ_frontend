@@ -36,7 +36,7 @@ const CourseLinks = {
           { title: 'The Arts and Science of Relationships: Understanding Human Needs', url: 'https://www.coursera.org/learn/human-needs' },
           { title: 'Introduction to Personal Branding', url: 'https://www.coursera.org/learn/personal-branding' },
         ],
-        'Quickness': [
+        'Answer Time': [
           { title: 'Creative Problem Solving', url: 'https://www.coursera.org/learn/creative-problem-solving' },
           { title: 'Problem Solving Using Computational Thinking', url: 'https://www.coursera.org/learn/problem-solving-using-computational-thinking' },
           { title: 'Critical Thinking & Problem-Solving', url: 'https://www.coursera.org/learn/critical-thinking-problem-solving' },
