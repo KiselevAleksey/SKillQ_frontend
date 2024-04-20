@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
-import { Button, CircularProgress, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Checkbox, FormControl, FormControlLabel, FormGroup, Radio, RadioGroup, Typography } from '@mui/material';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const CategorySelector = ({ categories, onSubmit }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedSubCategories, setSelectedSubCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const firestore = getFirestore();
   const storage = getStorage();
 
-  const handleChange = (event) => {
+  // Placeholder subcategories data structure
+  const subcategories = {
+    Marketing: ['SMM', 'Email Marketing', 'Digital Marketing', 'Product marketing', 'Content Marketing', 'SEO'],
+    Strategy: ['Business Strategy', 'Operational Efficiency', 'Growth Planning'],
+    Management: ['Team Leadership', 'Resource Allocation', 'Performance Measurement']
+  };
+
+  const handleChangeCategory = (event) => {
     setSelectedCategory(event.target.value);
+    setSelectedSubCategories([]); // Reset subcategories when changing category
+  };
+
+  const handleSelectSubCategory = (event) => {
+    const value = event.target.value;
+    setSelectedSubCategories((prevSelected) =>
+      prevSelected.includes(value)
+        ? prevSelected.filter((sub) => sub !== value)
+        : [...prevSelected, value]
+    );
   };
 
   const fetchRandomQuestions = async (category) => {
@@ -68,7 +86,6 @@ const CategorySelector = ({ categories, onSubmit }) => {
   };
 
   const handleSubmit = async () => {
-    console.log('Selected category:', selectedCategory);
     const questionData = await fetchRandomQuestions(selectedCategory);
     if (questionData) {
       onSubmit(questionData);
@@ -77,9 +94,39 @@ const CategorySelector = ({ categories, onSubmit }) => {
     }
   };
 
+  const renderSubCategories = (category) => {
+    return (
+      <>
+          <Typography 
+            variant="subtitle1" 
+            fontWeight='bold' 
+            sx={{ pt: 2 }} // This adds padding-top with the theme's spacing multiplier
+            gutterBottom
+          >
+            Please pick sub-categories:
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: 2 }}>
+            {subcategories[category].map((subcat) => (
+              <FormControlLabel
+                key={subcat}
+                control={
+                  <Checkbox
+                    checked={selectedSubCategories.includes(subcat)}
+                    onChange={handleSelectSubCategory}
+                    value={subcat}
+                  />
+                }
+                label={subcat}
+              />
+            ))}
+          </Box>
+      </>
+    );
+  };
+
   return (
     <div>
-      <Typography variant="h6">
+      <Typography variant="h6" gutterBottom>
         Please choose the category to make an assessment on.
       </Typography>
       <FormControl component="fieldset">
@@ -87,22 +134,27 @@ const CategorySelector = ({ categories, onSubmit }) => {
           aria-label="category"
           name="category"
           value={selectedCategory}
-          onChange={handleChange}
+          onChange={handleChangeCategory}
         >
-          {categories.map((cat, index) => (
+          {categories.map((category, index) => (
             <FormControlLabel
-              key={index}
-              value={cat}
+              key={category}
+              value={category}
               control={<Radio />}
-              label={cat}
+              label={category}
             />
           ))}
         </RadioGroup>
+        {selectedCategory && (
+          <FormGroup>
+            {renderSubCategories(selectedCategory)}
+          </FormGroup>
+        )}
         <Button
           variant="contained"
           color="primary"
           onClick={handleSubmit}
-          disabled={!selectedCategory || loading}
+          disabled={!selectedCategory || !selectedSubCategories.length || loading}
         >
           {loading ? <CircularProgress size={24} /> : 'Submit'}
         </Button>

@@ -80,7 +80,7 @@ function ImageSection({ classes }) {
       <Card className={classes.card}>
         <div className={classes.imageWrapper}>
           <img
-            src={`${process.env.PUBLIC_URL}/images/logged_out/petals_photo.webp`}
+            src={`${process.env.PUBLIC_URL}/images/logged_out/petals_photo_upd.webp`}
             alt="SkillQ Talent"
             className={classes.image}
           />
