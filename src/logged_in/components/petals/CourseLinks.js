@@ -1,6 +1,6 @@
 // src/data/courseLinks.js
 const CourseLinks = {
-        'SMM': [
+        'Social Media Marketing': [
           { title: 'Social Media Marketing Specialization', url: 'https://www.coursera.org/specializations/social-media-marketing' },
           { title: 'Digital Marketing Strategy', url: 'https://www.coursera.org/learn/marketing-strategy' },
           { title: 'Facebook Social Media Marketing', url: 'https://www.coursera.org/learn/facebook-social-media-marketing' },
@@ -12,10 +12,10 @@ const CourseLinks = {
           { title: 'Copywriting for Conversions', url: 'https://www.coursera.org/learn/copywriting-for-conversions' },
           { title: 'SEO and Content Marketing', url: 'https://www.coursera.org/learn/seo-content-marketing' },
         ],
-        'Product Marketing': [
+        'Marketing Strategy': [
           { title: 'Product Management Fundamentals', url: 'https://www.coursera.org/learn/product-management-fundamentals' },
           { title: 'Brand and Product Management', url: 'https://www.coursera.org/learn/brand' },
-          { title: 'Product Marketing Basics', url: 'https://www.coursera.org/learn/product-marketing-basics' },
+          { title: 'Marketing Strategy Basics', url: 'https://www.coursera.org/learn/product-marketing-basics' },
           { title: 'Marketing Analytics', url: 'https://www.coursera.org/learn/marketing-analytics' },
         ],
         'Structuring': [

@@ -12,8 +12,8 @@ const JobDetails = ({ jobId }) => {
   
   const userSkills = { //to be replaced with actual skills
     'Content Marketing': 82,
-    'Product Marketing': 96,
-    'SMM': 73,
+    'Marketing Strategy': 96,
+    'Social Media Marketing': 73,
     'Presentation': 66,
     'Problem Solving': 48,
   };

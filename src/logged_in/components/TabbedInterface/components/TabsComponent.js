@@ -10,7 +10,7 @@ const skillDetails = {
     'Marketing': {
       title: 'Marketing',
       description: 'Explore strategic marketing techniques including digital marketing, content creation, and market analysis to enhance brand awareness and business growth.',
-      subSkills: ['Social Media Marketing', 'Content Marketing', 'Product Marketing', 'Email Marketing', 'SEO/SEM', 'Digital Advertising', 'Brand Management', 'Marketing Analytics', 'Influencer Marketing', 'Affiliate Marketing', 'Video Marketing', 'B2B Marketing', 'B2C Marketing', 'Mobile Marketing', 'Event Marketing'],
+      subSkills: ['Social Media Marketing', 'Content Marketing', 'Marketing Strategy', 'Email Marketing', 'SEO/SEM', 'Digital Advertising', 'Brand Management', 'Marketing Analytics', 'Influencer Marketing', 'Affiliate Marketing', 'Video Marketing', 'B2B Marketing', 'B2C Marketing', 'Mobile Marketing', 'Event Marketing'],
     },
     'Sales': {
       title: 'Sales',

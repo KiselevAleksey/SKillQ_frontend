@@ -36,8 +36,8 @@ const Summary = ({ petal }) => {
     switch (petal.label) {
       case 'Expertise 84%':
         summary = [
-          `You have shown exceptional expertise in Product Marketing with a score of 96%. Your Content Marketing skills are also impressive at 82%.`,
-          `However, there is room for improvement in SMM, where you scored 73%. Consider focusing on social media strategies to enhance your overall expertise.`
+          `You have shown exceptional expertise in Marketing Strategy with a score of 96%. Your Content Marketing skills are also impressive at 82%.`,
+          `However, there is room for improvement in Social Media Marketing, where you scored 73%. Consider focusing on social media strategies to enhance your overall expertise.`
         ];
         break;
       case 'Presentation 66%':

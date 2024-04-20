@@ -19,7 +19,7 @@ const JobDetailsData = {
       description: 'GIC is one of the world’s largest sovereign wealth funds. With over 2,000 employees ...',
     },
     2: {
-        title: 'SMM Strategist',
+        title: 'Social Media Marketing Strategist',
         company: 'Garrett-Moore',
         location: 'Malaysia (Kuala Lumpur)',
         employmentType: 'Full-time',
@@ -30,12 +30,12 @@ const JobDetailsData = {
         schoolAlumniCount: '2 school alumni work here',
         skills: {
             'Content Marketing': 65,
-            'Product Marketing': 80,
-            'SMM': 50,
+            'Marketing Strategy': 80,
+            'Social Media Marketing': 50,
             'Presentation': 70,
             'Sales': 60
           },
-        description: 'Garrett-Moore is a leading marketing agency specializing in social media management. As an SMM Strategist, you will be responsible for developing and implementing social media strategies to drive engagement and growth for our clients. Join our dynamic team and make an impact!',
+        description: 'Garrett-Moore is a leading marketing agency specializing in social media management. As an Social Media Marketing Strategist, you will be responsible for developing and implementing social media strategies to drive engagement and growth for our clients. Join our dynamic team and make an impact!',
     },
     3: {
         title: 'Brand Marketing Executive',
@@ -48,14 +48,14 @@ const JobDetailsData = {
         alumniCount: '5 company alumni work here',
         schoolAlumniCount: '1 school alumni work here',
         skills: {
-            'SMM': 60,
+            'Social Media Marketing': 60,
             'Content Marketing': 70,
             'Presentation': 60
           },      
         description: 'Salazar, Vincent and Evans is a fast-growing consumer goods company known for its innovative products and dynamic marketing campaigns. As a Brand Marketing Executive, you will play a key role in developing and executing marketing strategies to drive brand awareness and customer engagement. Join our team and be part of our exciting journey!',
     },
     4: {
-        title: 'Product Marketing Lead',
+        title: 'Marketing Strategy Lead',
         company: 'Jones and Sons',
         location: 'Malaysia (Kuala Lumpur)',
         employmentType: 'Full-time',
@@ -65,11 +65,11 @@ const JobDetailsData = {
         alumniCount: '8 company alumni work here',
         schoolAlumniCount: '0 school alumni work here',
         skills: {
-            'Product Marketing': 85,
+            'Marketing Strategy': 85,
             'Content Marketing': 75,
             'Sales': 80
           },
-        description: 'Jones and Sons is a leading technology company specializing in innovative software solutions. As a Product Marketing Lead, you will be responsible for developing and executing marketing strategies to drive product adoption and revenue growth. Join our team and help shape the future of technology!',
+        description: 'Jones and Sons is a leading technology company specializing in innovative software solutions. As a Marketing Strategy Lead, you will be responsible for developing and executing marketing strategies to drive product adoption and revenue growth. Join our team and help shape the future of technology!',
     },
     5: {
         title: 'Marketing Manager',
@@ -83,15 +83,15 @@ const JobDetailsData = {
         schoolAlumniCount: '2 school alumni work here',
         skills: {
             'Content Marketing': 70,
-            'Product Marketing': 75,
-            'SMM': 80,
+            'Marketing Strategy': 75,
+            'Social Media Marketing': 80,
             'Sales': 85
           },
       
         description: 'Lee PLC is a leading retail company with a diverse portfolio of brands. As a Marketing Manager, you will lead a team responsible for developing and executing marketing campaigns to drive brand awareness and sales. Join our dynamic team and help us shape the future of retail!',
     },
     6: {
-        title: 'Product Marketing Lead',
+        title: 'Marketing Strategy Lead',
         company: 'Hernandez-Brown',
         location: 'Malaysia (Kuala Lumpur)',
         employmentType: 'Full-time',
@@ -101,12 +101,12 @@ const JobDetailsData = {
         alumniCount: '6 company alumni work here',
         schoolAlumniCount: '1 school alumni work here',
         skills: {
-            'SMM': 75,
-            'Product Marketing': 80,
+            'Social Media Marketing': 75,
+            'Marketing Strategy': 80,
             'Content Marketing': 70,
             'Presentation': 85
           },
-        description: 'Hernandez-Brown is a global technology company known for its innovative products and solutions. As a Product Marketing Lead, you will drive the go-to-market strategy for our products and collaborate closely with cross-functional teams to ensure successful product launches and adoption. Join our team and be part of our mission to empower businesses with technology!',
+        description: 'Hernandez-Brown is a global technology company known for its innovative products and solutions. As a Marketing Strategy Lead, you will drive the go-to-market strategy for our products and collaborate closely with cross-functional teams to ensure successful product launches and adoption. Join our team and be part of our mission to empower businesses with technology!',
     },
   };
   

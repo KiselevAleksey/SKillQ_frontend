@@ -12,7 +12,7 @@ const CategorySelector = ({ categories, onSubmit }) => {
 
   // Placeholder subcategories data structure
   const subcategories = {
-    Marketing: ['SMM', 'Email Marketing', 'Digital Marketing', 'Product marketing', 'Content Marketing', 'SEO'],
+    Marketing: ['Social Media Marketing', 'Email Marketing', 'Marketing Strategy', 'Content Marketing', 'SEO'],
     Strategy: ['Business Strategy', 'Operational Efficiency', 'Growth Planning'],
     Management: ['Team Leadership', 'Resource Allocation', 'Performance Measurement']
   };

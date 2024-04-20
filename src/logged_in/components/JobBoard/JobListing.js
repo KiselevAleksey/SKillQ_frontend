@@ -6,7 +6,7 @@ import JobFilters from './JobFilters'; // make sure the path is correct
 const jobsData = [
     {
         id: 2,
-        title: 'SMM Strategist',
+        title: 'Social Media Marketing Strategist',
         company: 'Garrett-Moore',
         location: 'Malaysia (Kuala Lumpur)',
         matched: true,
@@ -22,17 +22,17 @@ const jobsData = [
         matched: false,
         promoted: false,
         easyApply: false,
-        skills: ['SMM', 'Content Marketing'],
+        skills: ['Social Media Marketing', 'Content Marketing'],
       },
       {
         id: 4,
-        title: 'Product Marketing Lead',
+        title: 'Marketing Strategy Lead',
         company: 'Jones and Sons',
         location: 'Malaysia (Kuala Lumpur)',
         matched: false,
         promoted: true,
         easyApply: false,
-        skills: ['Product Marketing', 'Content Marketing'],
+        skills: ['Marketing Strategy', 'Content Marketing'],
       },
       {
         id: 5,
@@ -42,17 +42,17 @@ const jobsData = [
         matched: false,
         promoted: false,
         easyApply: true,
-        skills: ['Content Marketing', 'Product Marketing', 'SMM'],
+        skills: ['Content Marketing', 'Marketing Strategy', 'Social Media Marketing'],
       },
       {
         id: 6,
-        title: 'Product Marketing Lead',
+        title: 'Marketing Strategy Lead',
         company: 'Hernandez-Brown',
         location: 'Malaysia (Kuala Lumpur)',
         matched: false,
         promoted: false,
         easyApply: true,
-        skills: ['SMM', 'Product Marketing', 'Content Marketing'],
+        skills: ['Social Media Marketing', 'Marketing Strategy', 'Content Marketing'],
       },
 ];
 

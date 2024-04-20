@@ -5,7 +5,7 @@ const petalData = [
       color: 'rgba(79, 195, 247, 0.5)', 
       bubbles: [
         {
-          name: 'SMM',
+          name: 'Social Media Marketing',
           number: 73,
           courseLinks: [
             { title: 'Social Media Marketing Specialization', url: 'https://www.coursera.org/specializations/social-media-marketing' },
@@ -25,12 +25,12 @@ const petalData = [
           ],
         },
         {
-          name: 'Product Marketing',
+          name: 'Marketing Strategy',
           number: 96,
           courseLinks: [
             { title: 'Product Management Fundamentals', url: 'https://www.coursera.org/learn/product-management-fundamentals' },
             { title: 'Brand and Product Management', url: 'https://www.coursera.org/learn/brand' },
-            { title: 'Product Marketing Basics', url: 'https://www.coursera.org/learn/product-marketing-basics' },
+            { title: 'Marketing Strategy Basics', url: 'https://www.coursera.org/learn/product-marketing-basics' },
             { title: 'Marketing Analytics', url: 'https://www.coursera.org/learn/marketing-analytics' },
           ],
         },

@@ -106,8 +106,8 @@ const UserProfile = () => {
       ],
       skills: [
         { name: 'Content Marketing', level: 80 },
-        { name: 'Product Marketing', level: 75 },
-        { name: 'SMM', level: 90 },
+        { name: 'Marketing Strategy', level: 75 },
+        { name: 'Social Media Marketing', level: 90 },
         { name: 'Problem Solving', level: 85 },
         { name: 'Presentation', level: 80 },
       ],
