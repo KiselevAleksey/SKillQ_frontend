@@ -66,7 +66,6 @@ const JobCard = ({ job }) => {
               <Typography sx={{ mr: 1, color: 'text.secondary' }}>
                 {job.location}
               </Typography>
-              <CheckCircleIcon color="action" fontSize="small" />
             </Box>
             {job.matched ? (
                 <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
