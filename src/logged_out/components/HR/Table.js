@@ -76,12 +76,12 @@ const createData = (feature, cashDash, otherCashbackPlatforms, traditionalLoyalt
 };
 
 const rows = [
-  createData('No POS integration No upfront costs', 'check', 'cross', 'cross'),
-  createData('Increase new customer transactions', 'check', 'cross', 'cross'),
-  createData('Maximize profit per transaction', 'check', 'cross', 'cross'),
-  createData('Doesn’t cannibalize existing customers', 'check', 'cross', 'cross'),
-  createData('You pay only for proven results', 'check', 'cross', 'cross'),
-  createData('Increase spend among existing customers', 'check', 'question', 'check'),
+  createData('Millions of candidates', 'check', 'check', 'question'),
+  createData('Objective skills assessment', 'check', 'cross', 'cross'),
+  createData('Candidates\' skill transparency', 'check', 'cross', 'cross'),
+  createData('Pre-screened candidates', 'check', 'cross', 'cross'),
+  createData('Pay only when found quality candidates', 'check', 'cross', 'cross'),
+  createData('Optimization for quality of applications', 'check', 'cross', 'cross'),
 ];
 
 const marks = {
